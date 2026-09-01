@@ -1,0 +1,2791 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BULLDROP.VIP — Premium Digital Shop</title>
+<meta name="description" content="BULLDROP.VIP — PM, UC va boshqa premium raqamli mahsulotlarni xavfsiz va tez xarid qiling.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<style>
+  :root{
+    --bg:#07060b; --bg-2:#0b0a12; --panel:#100e18; --panel-2:#15121e;
+    --white:#ffffff; --gold:#ffcc33; --purple:#9a5cff;
+    --purple-soft:rgba(154,92,255,.18); --gold-soft:rgba(255,204,51,.15);
+    --line:rgba(255,255,255,.09); --text-dim:#b7b3c8; --text-dim-2:#8a86a0;
+    --green:#3ddc84; --red:#ff5470;
+    --radius:20px; --radius-sm:13px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--white);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(ellipse 900px 520px at 88% 2%, rgba(154,92,255,.24), transparent 60%),
+      radial-gradient(ellipse 620px 480px at 8% 22%, rgba(255,204,51,.10), transparent 60%),
+      radial-gradient(ellipse 700px 520px at 60% 96%, rgba(154,92,255,.13), transparent 60%),
+      radial-gradient(ellipse 500px 400px at 20% 85%, rgba(255,204,51,.06), transparent 60%);
+    animation:bgDrift 18s ease-in-out infinite alternate;
+  }
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+    background-image:radial-gradient(rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size:26px 26px;
+  }
+  @keyframes bgDrift{0%{background-position:0% 0%,0% 0%,0% 0%;}100%{background-position:4% 6%,-4% -4%,3% -3%;}}
+  @keyframes fadeInUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+  @keyframes pulseGlow{0%,100%{box-shadow:0 0 0 rgba(255,196,0,0);}50%{box-shadow:0 0 30px rgba(255,196,0,.4);}}
+  @keyframes badgePulse{0%,100%{box-shadow:0 0 90px rgba(141,77,255,.28),inset 0 0 60px rgba(0,0,0,.6);}50%{box-shadow:0 0 130px rgba(141,77,255,.5),inset 0 0 60px rgba(0,0,0,.6);}}
+  @keyframes ringSpin{to{transform:rotate(360deg);}}
+  @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+  @keyframes rippleAnim{to{transform:scale(3.2);opacity:0;}}
+  @keyframes pop{from{transform:scale(.9) translateY(10px);opacity:0;}to{transform:scale(1) translateY(0);opacity:1;}}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1);}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.5);transform:scale(0);animation:rippleAnim .6s ease-out;pointer-events:none;}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 32px;position:relative;z-index:1;}
+  a{text-decoration:none;color:inherit;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+  input,select,textarea{font-family:inherit;}
+
+  /* HEADER */
+  header{position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);background:rgba(7,6,11,.72);border-bottom:1px solid var(--line);}
+  .header-inner{max-width:1280px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:14px;}
+  .logo{display:flex;align-items:center;gap:10px;transition:opacity .2s;}
+  .logo:hover{opacity:.82;}
+  .logo-badge{width:34px;height:34px;border-radius:10px;background:linear-gradient(145deg,var(--purple-soft),var(--gold-soft));border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;background-size:cover;background-position:center;}
+  .logo-text{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:17px;}
+  .logo-text span{color:var(--gold);}
+  nav.desktop-nav{display:flex;align-items:center;gap:26px;}
+  nav.desktop-nav a,nav.desktop-nav button.navlink{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:15px;letter-spacing:.3px;color:var(--text-dim);transition:.2s;position:relative;padding:4px 0;}
+  nav.desktop-nav a:hover,nav.desktop-nav button.navlink:hover{color:var(--white);}
+  nav.desktop-nav a.active{color:var(--white);}
+  nav.desktop-nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;background:linear-gradient(90deg,var(--purple),var(--gold));border-radius:2px;}
+  .header-right{display:flex;align-items:center;gap:10px;}
+  .balance-chip{display:flex;align-items:center;gap:8px;background:var(--panel-2);border:1px solid var(--line);padding:8px 14px;border-radius:100px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;color:var(--white);cursor:pointer;transition:.2s;}
+  .balance-chip:hover{border-color:var(--gold);}
+  .btn{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;letter-spacing:.4px;padding:11px 20px;border-radius:100px;transition:transform .18s ease,box-shadow .18s ease,filter .18s ease,border-color .18s ease,background .18s ease;white-space:nowrap;}
+  .btn:active{transform:scale(.96);}
+  .btn-gold{background:linear-gradient(135deg,#ffe17a,var(--gold) 55%,#ffb400);color:#1a1200;}
+  .btn-gold:hover{box-shadow:0 12px 34px rgba(255,204,51,.45);filter:brightness(1.06);transform:translateY(-2px);}
+  .btn-outline{background:rgba(255,255,255,.02);color:var(--white);border:1px solid var(--line);backdrop-filter:blur(6px);}
+  .btn-outline:hover{border-color:var(--purple);background:var(--purple-soft);}
+  .btn-purple{background:linear-gradient(135deg,#b385ff,var(--purple) 55%,#7a3aef);color:#fff;}
+  .btn-purple:hover{box-shadow:0 12px 32px rgba(154,92,255,.45);transform:translateY(-2px);}
+  .btn-ghost{background:var(--panel-2);color:var(--text-dim);border:1px solid var(--line);}
+  .btn-ghost:hover{color:var(--white);border-color:rgba(255,255,255,.18);}
+  .btn-sm{padding:8px 14px;font-size:13px;}
+  .btn-block{width:100%;}
+  .btn:disabled{opacity:.4;cursor:not-allowed;filter:grayscale(.4);}
+  .burger{display:none;width:38px;height:38px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line);align-items:center;justify-content:center;font-size:17px;}
+
+  /* VIEWS */
+  main.view{padding-top:96px;}
+
+  /* HERO */
+  .hero{padding:72px 0 60px;position:relative;}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--purple-soft);border:1px solid rgba(141,77,255,.35);padding:7px 16px;border-radius:100px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;letter-spacing:1px;color:#c9b3ff;text-transform:uppercase;margin-bottom:22px;}
+  h1.title{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(46px,6.2vw,80px);line-height:1;letter-spacing:-2px;margin-bottom:8px;}
+  h1.title .bull{color:var(--white);text-shadow:0 0 40px rgba(255,255,255,.15);}
+  h1.title .drop{color:var(--gold);text-shadow:0 0 50px rgba(255,204,51,.4);}
+  .subtitle-tag{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:19px;letter-spacing:5px;color:#c9aeff;text-transform:uppercase;margin-bottom:18px;}
+  .hero-desc{color:var(--text-dim);font-size:17px;line-height:1.65;max-width:480px;margin-bottom:34px;}
+  .hero-desc b{color:var(--white);font-weight:600;}
+  .hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:38px;}
+  .hero-btns .btn{padding:16px 30px;font-size:16px;}
+  .hero-btns .btn-gold{animation:pulseGlow 2.6s ease-in-out infinite;}
+  .stat-row{display:flex;gap:34px;flex-wrap:wrap;}
+  .stat{display:flex;align-items:center;gap:10px;}
+  .stat .ic{width:34px;height:34px;border-radius:9px;background:var(--panel-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:15px;}
+  .stat .num{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:16px;color:var(--white);}
+  .stat .lbl{font-size:12px;color:var(--text-dim-2);}
+  .hero-visual{position:relative;display:flex;align-items:center;justify-content:center;aspect-ratio:1/1;}
+  .ring{position:absolute;border-radius:50%;border:2px solid transparent;}
+  .ring-1{width:88%;height:88%;background:conic-gradient(from 0deg,var(--purple),var(--gold),var(--purple));-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 3px));mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 3px));animation:ringSpin 14s linear infinite;filter:drop-shadow(0 0 40px rgba(141,77,255,.35));}
+  .hero-badge{position:relative;z-index:2;width:64%;aspect-ratio:1/1;border-radius:50%;background:radial-gradient(circle at 40% 30%,#17111f,#050507 72%);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:min(22vw,150px);animation:badgePulse 3.6s ease-in-out infinite;transition:transform .4s ease;}
+  .hero-visual:hover .hero-badge{transform:scale(1.04);}
+  .floater{position:absolute;background:var(--panel-2);border:1px solid var(--line);border-radius:14px;padding:10px 14px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;display:flex;align-items:center;gap:8px;backdrop-filter:blur(6px);animation:float 5s ease-in-out infinite;}
+  .floater.f1{top:6%;left:-2%;color:#c9b3ff;box-shadow:0 10px 30px rgba(141,77,255,.25);animation-delay:0s;}
+  .floater.f2{bottom:10%;right:-4%;color:#ffdb7a;box-shadow:0 10px 30px rgba(255,196,0,.2);animation-delay:1.4s;}
+  .floater.f3{top:44%;right:-8%;color:#fff;box-shadow:0 10px 30px rgba(0,0,0,.4);animation-delay:2.6s;}
+  @media(max-width:980px){.hero-grid{grid-template-columns:1fr;}.hero-visual{max-width:340px;margin:20px auto 0;order:-1;}.floater{display:none;}}
+
+  .section{padding:76px 0;scroll-margin-top:90px;}
+  .section-eyebrow{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;letter-spacing:2.5px;color:var(--text-dim-2);text-transform:uppercase;margin-bottom:8px;}
+  .section-title{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:clamp(26px,3.4vw,38px);}
+  .section-title-row{display:flex;align-items:center;gap:14px;margin-bottom:26px;flex-wrap:wrap;}
+  .section-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;}
+  .section.pm .section-icon{background:var(--purple-soft);border:1px solid rgba(141,77,255,.35);}
+  .section.uc .section-icon{background:var(--gold-soft);border:1px solid rgba(255,196,0,.35);}
+  .section-title-row h2{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:24px;}
+  .section-title-row .cnt{font-family:'Rajdhani',sans-serif;color:var(--text-dim-2);font-weight:600;font-size:14px;margin-left:auto;}
+
+  /* CATEGORY CARDS */
+  .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .cat-card{position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,0) 40%),var(--panel);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;display:flex;flex-direction:column;gap:14px;transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .3s;cursor:pointer;}
+  .cat-card::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .3s;background:radial-gradient(circle at 30% 0%,var(--glow,rgba(154,92,255,.28)),transparent 65%);}
+  .cat-card:hover{transform:translateY(-10px) scale(1.015);border-color:rgba(255,255,255,.22);box-shadow:0 24px 60px rgba(0,0,0,.5);}
+  .cat-card:hover::before{opacity:1;}
+  .cat-card.pm{--glow:rgba(141,77,255,.3);}
+  .cat-card.uc{--glow:rgba(255,196,0,.28);}
+  .cat-card.keys{--glow:rgba(120,150,255,.28);}
+  .cat-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;position:relative;z-index:1;transition:transform .3s cubic-bezier(.34,1.56,.64,1);}
+  .cat-card:hover .cat-icon{transform:scale(1.12) rotate(-4deg);}
+  .cat-card.pm .cat-icon{background:var(--purple-soft);border:1px solid rgba(141,77,255,.35);}
+  .cat-card.uc .cat-icon{background:var(--gold-soft);border:1px solid rgba(255,196,0,.35);}
+  .cat-card.keys .cat-icon{background:rgba(120,150,255,.14);border:1px solid rgba(120,150,255,.32);}
+  .cat-card h3{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:24px;position:relative;z-index:1;}
+  .cat-card .cat-sub{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;letter-spacing:1px;text-transform:uppercase;position:relative;z-index:1;}
+  .cat-card.pm .cat-sub{color:#c9b3ff;}
+  .cat-card.uc .cat-sub{color:var(--gold);}
+  .cat-card.keys .cat-sub{color:#9db4ff;}
+  .cat-card p{color:var(--text-dim);font-size:14.5px;line-height:1.55;position:relative;z-index:1;}
+  .cat-link{margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;position:relative;z-index:1;}
+  .cat-card.pm .cat-link{color:#c9b3ff;}
+  .cat-card.uc .cat-link{color:var(--gold);}
+  .cat-card.keys .cat-link{color:#9db4ff;}
+  .cat-link svg{transition:transform .2s;}
+  .cat-card:hover .cat-link svg{transform:translateX(4px);}
+  @media(max-width:820px){.cat-grid{grid-template-columns:1fr;}}
+
+  /* ABOUT */
+  .about{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0) 30%),var(--panel);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:var(--radius);padding:52px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+  .about-feats{display:flex;flex-direction:column;gap:18px;}
+  .feat{display:flex;gap:14px;align-items:flex-start;}
+  .feat .ic{width:38px;height:38px;border-radius:10px;flex-shrink:0;background:var(--purple-soft);border:1px solid rgba(141,77,255,.3);display:flex;align-items:center;justify-content:center;font-size:16px;}
+  .feat h4{font-family:'Rajdhani',sans-serif;font-size:16px;font-weight:700;margin-bottom:2px;}
+  .feat p{color:var(--text-dim);font-size:13.5px;line-height:1.5;}
+  .about p.lead{color:var(--text-dim);line-height:1.75;font-size:15.5px;margin-bottom:20px;}
+  .about h2{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:30px;margin-bottom:16px;}
+  @media(max-width:820px){.about{grid-template-columns:1fr;padding:28px;}}
+
+  /* SHOP BANNER */
+  .shop-banner{position:relative;overflow:hidden;border-radius:var(--radius);background:linear-gradient(135deg,#0c0714,#0a0a10 55%,#100b06);border:1px solid var(--line);padding:56px 46px;display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;}
+  .shop-banner::before{content:"";position:absolute;top:-40%;right:-10%;width:60%;height:180%;background:radial-gradient(circle,rgba(141,77,255,.35),transparent 65%);filter:blur(10px);}
+  .shop-banner::after{content:"";position:absolute;bottom:-50%;left:-10%;width:50%;height:150%;background:radial-gradient(circle,rgba(255,196,0,.2),transparent 65%);filter:blur(10px);}
+  .shop-banner-text{position:relative;z-index:1;max-width:560px;}
+  .shop-banner-text .section-eyebrow{color:var(--gold);}
+  .shop-banner-text h2{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:clamp(24px,3vw,34px);margin-bottom:10px;}
+  .shop-banner-text p{color:var(--text-dim);font-size:15.5px;line-height:1.6;}
+  .shop-banner .btn{position:relative;z-index:1;padding:17px 32px;font-size:16px;flex-shrink:0;}
+  @media(max-width:640px){.shop-banner{padding:34px 24px;}.shop-banner .btn{width:100%;justify-content:center;}}
+
+  /* SHOP PAGE HEAD */
+  .page-head{padding:26px 0 8px;}
+  .page-head h1{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:clamp(26px,3.6vw,36px);}
+  .page-head p{color:var(--text-dim);margin-top:6px;font-size:15px;}
+
+  /* PRODUCTS */
+  .prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px;}
+  .prod-card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0) 35%),var(--panel);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .3s,box-shadow .3s;opacity:0;animation:fadeInUp .55s cubic-bezier(.22,1,.36,1) both;}
+  .prod-card:hover{border-color:rgba(255,255,255,.22);transform:translateY(-8px);box-shadow:0 20px 48px rgba(0,0,0,.45);}
+  .prod-media{width:100%;aspect-ratio:4/3;background:var(--panel-2);display:flex;align-items:center;justify-content:center;font-size:34px;color:var(--text-dim-2);overflow:hidden;position:relative;}
+  .prod-media img,.prod-media video{width:100%;height:100%;object-fit:cover;transition:transform .5s ease;}
+  .prod-card:hover .prod-media img,.prod-card:hover .prod-media video{transform:scale(1.08);}
+  .prod-badge{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);color:var(--gold);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;padding:4px 10px;border-radius:100px;border:1px solid rgba(255,196,0,.3);}
+  .prod-body{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .prod-name{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15.5px;}
+  .prod-desc{color:var(--text-dim-2);font-size:12.5px;line-height:1.5;}
+  .prod-price-row{display:flex;align-items:center;gap:8px;margin-top:2px;}
+  .prod-price{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:19px;color:var(--gold);}
+  .prod-price.na{color:var(--text-dim-2);font-size:14px;font-weight:600;}
+  .prod-old-price{font-size:13px;color:var(--text-dim-2);text-decoration:line-through;}
+  .prod-stock{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;color:var(--text-dim);}
+  .prod-stock.zero{color:var(--red);}
+  .prod-buy{margin-top:auto;}
+  .empty-state{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;background:var(--panel);border:1px dashed var(--line);border-radius:16px;text-align:center;}
+  .empty-state .ic{font-size:40px;margin-bottom:14px;opacity:.7;}
+  .empty-state h3{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:var(--text-dim);}
+
+  /* KEYS */
+  .keys-box{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:50px 20px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;cursor:pointer;transition:.2s;}
+  .keys-box:hover{border-color:rgba(120,150,255,.4);}
+  .keys-box .ic{font-size:36px;margin-bottom:6px;}
+  .keys-box h3{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;color:var(--text-dim);}
+
+  footer{border-top:1px solid var(--line);padding:30px 0;margin-top:20px;}
+  .footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;color:var(--text-dim-2);font-size:13px;}
+  .footer-brand{display:flex;align-items:center;gap:10px;}
+  .footer-brand .logo-badge{width:30px;height:30px;font-size:16px;}
+  .footer-copy b{color:var(--text-dim);}
+  .socials{display:flex;gap:10px;}
+  .socials a{width:36px;height:36px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--text-dim);transition:.2s;}
+  .socials a:hover{border-color:var(--purple);color:var(--white);}
+
+  /* MOBILE MENU */
+  .mobile-menu-card a,.mobile-menu-card button{display:block;width:100%;text-align:left;padding:12px 6px;border-bottom:1px solid var(--line);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:17px;}
+  .mobile-menu-card a:last-child,.mobile-menu-card button:last-child{border-bottom:none;}
+
+  /* MODALS */
+  .modal-overlay{position:fixed;inset:0;background:rgba(5,5,7,.8);backdrop-filter:blur(8px);z-index:400;display:none;align-items:center;justify-content:center;padding:20px;overflow-y:auto;}
+  .modal-overlay.open{display:flex;animation:fadeIn .2s ease;}
+  .modal-box{background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,0) 30%),var(--panel);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:20px;max-width:420px;width:100%;padding:30px;box-shadow:0 24px 90px rgba(0,0,0,.65);animation:pop .28s cubic-bezier(.34,1.56,.64,1);margin:auto;}
+  .modal-box.wide{max-width:640px;}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+  .modal-head h3{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:19px;}
+  .modal-close{width:32px;height:32px;border-radius:9px;background:var(--panel-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--text-dim);flex-shrink:0;}
+  .modal-close:hover{color:var(--white);}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:13px;color:var(--text-dim);margin-bottom:6px;letter-spacing:.3px;}
+  .field input[type=text],.field input[type=number],.field input[type=tel],.field select,.field textarea{width:100%;background:var(--bg-2);border:1px solid var(--line);border-radius:10px;padding:11px 13px;color:var(--white);font-size:14.5px;transition:.2s;}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--purple);}
+  .field textarea{resize:vertical;min-height:70px;}
+  .field input[type=file]{width:100%;background:var(--bg-2);border:1px dashed var(--line);border-radius:10px;padding:10px;color:var(--text-dim);font-size:13px;}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .center-icon{width:56px;height:56px;border-radius:14px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:26px;}
+  .modal-note{font-size:12.5px;color:var(--text-dim-2);line-height:1.5;margin-top:6px;}
+  .card-display{background:var(--bg-2);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px;}
+  .card-display .cn{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:20px;letter-spacing:1.5px;color:var(--gold);margin-bottom:4px;}
+  .card-display .ch{font-size:12.5px;color:var(--text-dim);}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--panel);border:1px solid rgba(61,220,132,.4);color:var(--white);padding:13px 22px;border-radius:100px;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:14.5px;z-index:600;box-shadow:0 10px 40px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .3s ease,transform .3s cubic-bezier(.34,1.56,.64,1);}
+  .toast.show{opacity:1;transform:translate(-50%,-10px);}
+  .toast.err{border-color:rgba(255,84,112,.4);}
+
+  /* ADMIN */
+  .admin-overlay{position:fixed;inset:0;background:var(--bg);z-index:500;display:none;overflow-y:auto;}
+  .admin-overlay.open{display:block;animation:fadeIn .25s ease;}
+  .admin-top{position:sticky;top:0;background:rgba(5,5,7,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;z-index:2;}
+  .admin-top h2{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:19px;}
+  .admin-body{max-width:1100px;margin:0 auto;padding:26px 24px 60px;}
+  .admin-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px;}
+  .admin-tab{padding:10px 16px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13.5px;color:var(--text-dim);transition:.2s;}
+  .admin-tab:hover{color:var(--white);border-color:rgba(255,255,255,.2);}
+  .admin-tab.active{background:var(--purple-soft);border-color:rgba(141,77,255,.4);color:var(--white);}
+  .admin-panel{display:none;}
+  .admin-panel.active{display:block;animation:fadeInUp .35s cubic-bezier(.22,1,.36,1) both;}
+  .admin-card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;margin-bottom:18px;transition:border-color .2s;}
+  .admin-card:hover{border-color:rgba(255,255,255,.14);}
+  .admin-card h3{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;margin-bottom:16px;}
+  table.admin-table{width:100%;border-collapse:collapse;}
+  table.admin-table th{text-align:left;font-family:'Rajdhani',sans-serif;font-size:12.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--text-dim-2);padding:8px 10px;border-bottom:1px solid var(--line);}
+  table.admin-table td{padding:10px 10px;border-bottom:1px solid var(--line);font-size:13.5px;vertical-align:middle;}
+  table.admin-table tr:last-child td{border-bottom:none;}
+  .pill{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:100px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11.5px;letter-spacing:.3px;}
+  .pill.pending{background:rgba(255,196,0,.14);color:var(--gold);}
+  .pill.approved{background:rgba(61,220,132,.14);color:var(--green);}
+  .pill.rejected{background:rgba(255,84,112,.14);color:var(--red);}
+  .pill.active{background:rgba(61,220,132,.14);color:var(--green);}
+  .pill.inactive{background:rgba(255,255,255,.08);color:var(--text-dim-2);}
+  .receipt-thumb{width:44px;height:44px;border-radius:8px;object-fit:cover;border:1px solid var(--line);cursor:pointer;transition:transform .2s;}
+  .receipt-thumb:hover{transform:scale(1.15);}
+  .row-actions{display:flex;gap:6px;}
+  .empty-row td{text-align:center;color:var(--text-dim-2);padding:26px;}
+
+  @media(max-width:640px){
+    .wrap{padding:0 16px;}
+    .header-inner{padding:12px 16px;}
+    nav.desktop-nav{display:none;}
+    .burger{display:flex;}
+    .balance-chip span.bal-full{display:none;}
+    .hero{padding:28px 0 40px;}
+    .about{padding:24px;}
+    .field-row{grid-template-columns:1fr;}
+    .admin-body{padding:20px 14px 60px;}
+    table.admin-table{display:block;overflow-x:auto;white-space:nowrap;}
+  }
+
+  /* ===================== CASE VIEW (scoped) ===================== */
+  #caseView{
+    --void:#08050d; --c-panel:#120c1a; --c-panel-2:#1a1225;
+    --hair:#2c2338; --crimson:#e8283f; --crimson-bright:#ff3b54; --violet:#7c4ce0; --c-gold:#f5b942;
+    --c-text:#f4eefb; --c-text-dim:#a99cc0; --c-text-faint:#6f6484;
+    --tier-common:#8a8496; --tier-common-bg:#1c1a22;
+    --tier-rare:#4f8ef7; --tier-rare-bg:#101e33;
+    --tier-epic:#b24fe0; --tier-epic-bg:#22142e;
+    --tier-legendary:#f5b942; --tier-legendary-bg:#2b2110;
+    background:var(--void); color:var(--c-text); font-family:'Manrope',sans-serif;
+    min-height:100vh;
+  }
+  #caseView .display{ font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.01em; }
+  #caseView .bg-glow{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(700px 500px at 18% -10%, rgba(232,40,63,.16), transparent 60%),
+      radial-gradient(600px 500px at 85% 10%, rgba(124,76,224,.14), transparent 60%),
+      radial-gradient(900px 700px at 50% 120%, rgba(232,40,63,.08), transparent 60%);
+  }
+  #caseView .case-wrap{ position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:20px 24px 80px; }
+  #caseView .notice{
+    margin-top:22px; display:flex; gap:11px; align-items:flex-start;
+    background:var(--c-panel-2); border:1px solid var(--hair);
+    border-left:2px solid var(--violet);
+    border-radius:10px; padding:13px 16px;
+    font-size:13px; color:var(--c-text-dim); line-height:1.6;
+  }
+  #caseView .notice svg{ flex:none; margin-top:1px; }
+  #caseView .case-card{
+    margin-top:26px; position:relative; overflow:hidden;
+    background:linear-gradient(180deg, var(--c-panel) 0%, var(--c-panel-2) 100%);
+    border:1px solid var(--hair);
+    border-radius:22px; padding:38px 30px 30px;
+  }
+  #caseView .case-card::before{
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(420px 260px at 50% 0%, rgba(232,40,63,.14), transparent 70%);
+    pointer-events:none;
+  }
+  #caseView .case-top{ position:relative; text-align:center; }
+  #caseView .case-tag{
+    display:inline-block; font-size:11px; letter-spacing:.14em; color:var(--crimson-bright);
+    background:rgba(232,40,63,.12); border:1px solid rgba(232,40,63,.35);
+    padding:4px 12px; border-radius:100px; margin-bottom:14px; font-weight:600;
+  }
+  #caseView .case-title{ font-size:30px; margin-bottom:8px; }
+  #caseView .case-sub{ color:var(--c-text-dim); font-size:14px; max-width:480px; margin:0 auto 26px; line-height:1.6; }
+  #caseView .case-visual{
+    position:relative; width:150px; height:150px; margin:0 auto 28px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  #caseView .case-visual .case-ring{
+    position:absolute; inset:0; border-radius:26px;
+    border:1px solid rgba(232,40,63,.4);
+    box-shadow:0 0 50px rgba(232,40,63,.25), inset 0 0 30px rgba(232,40,63,.12);
+    transition:box-shadow .4s, border-color .4s;
+  }
+  #caseView .case-visual .box{
+    width:96px; height:96px; border-radius:18px;
+    background:linear-gradient(155deg, #2a1d38, #180f22 60%, #0e0814);
+    border:1px solid var(--hair);
+    display:flex; align-items:center; justify-content:center;
+    transform:rotate(-6deg);
+    transition:transform .4s ease;
+  }
+  #caseView .case-visual.priming .box{ transform:rotate(0deg) scale(1.04); }
+  #caseView .case-visual.priming .case-ring{ box-shadow:0 0 80px rgba(232,40,63,.55), inset 0 0 40px rgba(232,40,63,.25); border-color:rgba(255,59,84,.8); }
+  #caseView .case-visual .box svg{ width:44px; height:44px; }
+  #caseView .open-btn{
+    display:block; margin:0 auto; min-width:230px;
+    background:linear-gradient(180deg, var(--crimson-bright), var(--crimson) 70%, #9c1a2c);
+    color:#fff; font-family:'Rajdhani',sans-serif; font-weight:700; font-size:17px; letter-spacing:.05em;
+    padding:15px 30px; border-radius:12px;
+    box-shadow:0 10px 26px rgba(232,40,63,.35), inset 0 1px 0 rgba(255,255,255,.25);
+    transition:transform .12s, box-shadow .2s, opacity .2s;
+  }
+  #caseView .open-btn:hover:not(:disabled){ transform:translateY(-1px); box-shadow:0 14px 32px rgba(232,40,63,.45), inset 0 1px 0 rgba(255,255,255,.25); }
+  #caseView .open-btn:active:not(:disabled){ transform:translateY(0px) scale(.98); }
+  #caseView .open-btn:disabled{ opacity:.55; cursor:not-allowed; }
+  #caseView .contents-label{
+    margin-top:30px; font-size:12px; letter-spacing:.1em; color:var(--c-text-faint);
+    text-transform:uppercase; font-weight:600;
+  }
+  #caseView .contents-grid{
+    margin-top:12px; display:grid; grid-template-columns:repeat(auto-fill, minmax(118px,1fr));
+    gap:10px;
+  }
+  #caseView .item-chip{
+    border-radius:12px; padding:10px 8px 9px; text-align:center;
+    border:1px solid var(--hair); background:var(--c-panel-2);
+    position:relative; overflow:hidden;
+  }
+  #caseView .item-chip .icon-wrap{
+    width:46px; height:46px; margin:0 auto 8px; border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  #caseView .item-chip .icon-wrap svg{ width:24px; height:24px; }
+  #caseView .item-chip .nm{ font-size:11.5px; line-height:1.3; color:var(--c-text); font-weight:600; min-height:28px; display:flex; align-items:center; justify-content:center;}
+  #caseView .item-chip .chance{ font-size:10.5px; color:var(--c-text-faint); margin-top:3px; }
+  #caseView .tier-common .icon-wrap{ background:var(--tier-common-bg); color:var(--tier-common);}
+  #caseView .tier-rare .icon-wrap{ background:var(--tier-rare-bg); color:var(--tier-rare);}
+  #caseView .tier-epic .icon-wrap{ background:var(--tier-epic-bg); color:var(--tier-epic);}
+  #caseView .tier-legendary .icon-wrap{ background:var(--tier-legendary-bg); color:var(--tier-legendary);}
+  #caseView .tier-rare{ border-color:rgba(79,142,247,.3);}
+  #caseView .tier-epic{ border-color:rgba(178,79,224,.35);}
+  #caseView .tier-legendary{ border-color:rgba(245,185,66,.4);}
+  #caseView .case-overlay{
+    position:fixed; inset:0; z-index:200;
+    background:rgba(5,3,8,.86); backdrop-filter:blur(6px);
+    display:none; align-items:center; justify-content:center; flex-direction:column;
+    opacity:0; transition:opacity .25s;
+  }
+  #caseView .case-overlay.show{ display:flex; opacity:1; }
+  #caseView .carousel-stage{
+    position:relative; width:min(760px, 92vw); height:150px;
+    background:linear-gradient(180deg, var(--c-panel) 0%, #0c0812 100%);
+    border:1px solid var(--hair); border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 30px 60px rgba(0,0,0,.5);
+  }
+  #caseView .carousel-stage::before, #caseView .carousel-stage::after{
+    content:''; position:absolute; top:0; bottom:0; width:90px; z-index:5; pointer-events:none;
+  }
+  #caseView .carousel-stage::before{ left:0; background:linear-gradient(90deg, var(--c-panel), transparent); }
+  #caseView .carousel-stage::after{ right:0; background:linear-gradient(270deg, var(--c-panel), transparent); }
+  #caseView .center-marker{
+    position:absolute; left:50%; top:0; bottom:0; width:2px; transform:translateX(-50%);
+    background:linear-gradient(180deg, transparent, var(--crimson-bright) 15%, var(--crimson-bright) 85%, transparent);
+    box-shadow:0 0 18px 2px rgba(255,59,84,.7);
+    z-index:6;
+  }
+  #caseView .center-marker .tri{
+    position:absolute; left:50%; transform:translateX(-50%);
+    width:0; height:0; border-left:7px solid transparent; border-right:7px solid transparent;
+  }
+  #caseView .center-marker .tri.top{ top:-1px; border-top:9px solid var(--crimson-bright); }
+  #caseView .center-marker .tri.bottom{ bottom:-1px; border-bottom:9px solid var(--crimson-bright); }
+  #caseView .reel{
+    position:absolute; top:0; left:0; height:100%;
+    display:flex; align-items:center; gap:14px; padding:0 14px;
+    will-change:transform;
+  }
+  #caseView .reel-card{
+    flex:none; width:104px; height:118px; border-radius:12px;
+    background:var(--c-panel-2); border:1px solid var(--hair);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+    position:relative;
+  }
+  #caseView .reel-card .icon-wrap{ width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center;}
+  #caseView .reel-card .icon-wrap svg{ width:23px; height:23px;}
+  #caseView .reel-card .rn{ font-size:10px; color:var(--c-text-dim); text-align:center; padding:0 6px; line-height:1.25; }
+  #caseView .stage-caption{ margin-top:22px; font-size:13px; color:var(--c-text-faint); letter-spacing:.02em; }
+  #caseView .case-reveal{
+    display:none; flex-direction:column; align-items:center; text-align:center;
+    animation:caseRevealIn .5s cubic-bezier(.2,.9,.25,1.2);
+  }
+  #caseView .case-reveal.show{ display:flex; }
+  @keyframes caseRevealIn{ from{ opacity:0; transform:scale(.85) translateY(10px);} to{ opacity:1; transform:scale(1) translateY(0);} }
+  #caseView .reveal-badge{
+    font-family:'Rajdhani',sans-serif; font-weight:700; font-size:13px; letter-spacing:.14em;
+    color:var(--c-gold); margin-bottom:14px;
+  }
+  #caseView .reveal-title{ font-family:'Rajdhani',sans-serif; font-weight:700; font-size:34px; margin-bottom:22px; }
+  #caseView .reveal-icon-wrap{
+    width:118px; height:118px; border-radius:22px; margin-bottom:18px;
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+  #caseView .reveal-icon-wrap svg{ width:56px; height:56px; }
+  #caseView .reveal-icon-wrap::after{
+    content:''; position:absolute; inset:-14px; border-radius:30px;
+    opacity:.55; filter:blur(16px); z-index:-1;
+  }
+  #caseView .reveal-name{ font-family:'Rajdhani',sans-serif; font-weight:700; font-size:20px; margin-bottom:5px; }
+  #caseView .reveal-tier{ font-size:12.5px; text-transform:uppercase; letter-spacing:.1em; font-weight:600; margin-bottom:6px; }
+  #caseView .reveal-note{ font-size:13px; color:var(--c-text-dim); margin-bottom:28px; }
+  #caseView .reveal-actions{ display:flex; gap:12px; }
+  #caseView .case-btn-ghost{
+    background:transparent; border:1px solid var(--hair); color:var(--c-text);
+    font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.03em; font-size:14.5px;
+    padding:12px 22px; border-radius:11px; transition:border-color .15s, background .15s;
+  }
+  #caseView .case-btn-ghost:hover{ border-color:var(--c-text-faint); background:var(--c-panel-2); }
+  #caseView .btn-solid{
+    background:linear-gradient(180deg, var(--crimson-bright), var(--crimson));
+    color:#fff; font-family:'Rajdhani',sans-serif; font-weight:700; letter-spacing:.03em; font-size:14.5px;
+    padding:12px 22px; border-radius:11px; box-shadow:0 8px 20px rgba(232,40,63,.35);
+  }
+  #caseView .section-head{ margin-top:52px; display:flex; align-items:baseline; justify-content:space-between; }
+  #caseView .section-head h2{ font-family:'Rajdhani',sans-serif; font-size:22px; font-weight:700; }
+  #caseView .section-head .cnt{ font-size:13px; color:var(--c-text-faint); }
+  #caseView .case-filters{ display:flex; gap:8px; margin-top:16px; flex-wrap:wrap; }
+  #caseView .filter-btn{
+    background:var(--c-panel-2); border:1px solid var(--hair); color:var(--c-text-dim);
+    font-size:13px; padding:7px 15px; border-radius:100px; transition:.15s;
+  }
+  #caseView .filter-btn.active{ background:rgba(232,40,63,.14); border-color:rgba(232,40,63,.5); color:var(--c-text); }
+  #caseView .inv-grid{ margin-top:16px; display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:12px; }
+  #caseView .inv-card{
+    background:var(--c-panel-2); border:1px solid var(--hair); border-radius:14px; padding:16px 12px;
+    display:flex; flex-direction:column; align-items:center; text-align:center; gap:9px;
+  }
+  #caseView .inv-card .icon-wrap{ width:52px; height:52px; border-radius:12px; display:flex; align-items:center; justify-content:center; }
+  #caseView .inv-card .icon-wrap svg{ width:26px; height:26px; }
+  #caseView .inv-card .nm{ font-size:13px; font-weight:600; line-height:1.3; }
+  #caseView .inv-card .tier-lbl{ font-size:10.5px; text-transform:uppercase; letter-spacing:.08em; font-weight:600; }
+  #caseView .inv-card .dt{ font-size:11px; color:var(--c-text-faint); }
+  #caseView .case-empty-state{
+    margin-top:16px; padding:44px 20px; text-align:center;
+    border:1px dashed var(--hair); border-radius:16px; color:var(--c-text-faint); font-size:14px;
+  }
+  @media (max-width:640px){
+    #caseView .case-title{ font-size:24px; }
+    #caseView .carousel-stage{ height:126px; }
+    #caseView .reel-card{ width:88px; height:100px; }
+    #caseView .reveal-title{ font-size:26px; }
+  }
+</style>
+
+<style id="safe-case-promo-ui">
+/* Final UI additions — deliberately scoped so existing site styles keep working. */
+.case-price-final{font-weight:900;}
+#cornerCabinetBtn{
+  position:fixed;right:18px;bottom:18px;z-index:9999;
+  width:58px;height:58px;border-radius:14px;border:1px solid rgba(255,255,255,.16);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  background:var(--gold,#f5c542);color:#111;box-shadow:0 10px 28px rgba(0,0,0,.28);
+  font-size:24px;
+}
+#finalPromoBox{margin:18px auto;max-width:560px;padding:18px;border-radius:16px;}
+#finalPromoBox .promo-line{display:flex;gap:8px;}
+#finalPromoBox input{flex:1;min-width:0;}
+.final-status{min-height:20px;margin-top:9px;font-size:13px;}
+.final-status.ok{color:#58d68d}.final-status.err{color:#ff6868}
+.final-code-card{display:flex;align-items:center;justify-content:space-between;gap:10px;
+padding:12px;border:1px solid var(--line);border-radius:12px;margin:8px 0;}
+.final-code-card code{font-weight:900;word-break:break-all;}
+@media(max-width:600px){
+  #cornerCabinetBtn{right:12px;bottom:12px;width:54px;height:54px;}
+  #finalPromoBox .promo-line{flex-direction:column;}
+}
+</style>
+
+
+
+
+
+<style id="login-clean-style">
+.login-box{max-width:470px!important;padding:24px!important;background:linear-gradient(180deg,#111119 0%,#0a0a10 100%)!important;border-color:rgba(255,255,255,.10)!important;box-shadow:0 25px 80px rgba(0,0,0,.68)!important;}
+.login-top{display:flex;gap:12px;align-items:center;margin-bottom:22px;}
+.login-avatar{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;background:var(--purple-soft);border:1px solid rgba(141,77,255,.35);flex-shrink:0;}
+.login-top .modal-head h3{font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:20px;margin:0 0 3px;}
+.login-top .modal-head p{font-size:12px;color:var(--text-dim-2);line-height:1.4;}
+.login-fields{display:grid;grid-template-columns:1fr 120px;gap:12px;}
+.login-fields .field:first-child{grid-column:1/-1;}
+.login-fields .field{margin-bottom:0;}
+.login-fields label{font-size:12px;}
+.login-rule{margin:16px 0 12px;padding:12px;border:1px solid rgba(255,196,0,.20);background:var(--gold-soft);border-radius:12px;display:flex;gap:10px;align-items:flex-start;}
+.login-rule-icon{width:30px;height:30px;border-radius:9px;background:rgba(255,196,0,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.login-rule b{display:block;font-size:12.5px;color:var(--gold);margin-bottom:3px;}
+.login-rule span{display:block;color:var(--text-dim);font-size:11.5px;line-height:1.45;}
+.login-cooldown{margin:0 0 12px;padding:12px;border-radius:11px;background:rgba(255,196,0,.10);border:1px solid rgba(255,196,0,.28);color:var(--gold);font-size:12px;line-height:1.5;}
+.login-submit{padding:13px 18px!important;font-size:16px!important;}
+.login-divider{display:flex;align-items:center;gap:10px;margin:16px 0 10px;color:var(--text-dim-2);font-size:11px;}
+.login-divider:before,.login-divider:after{content:'';height:1px;background:var(--line);flex:1;}
+.login-secure{text-align:center;color:var(--text-dim-2);font-size:11px;margin-top:8px;}
+@media(max-width:520px){.login-fields{grid-template-columns:1fr;}.login-fields .field:first-child{grid-column:auto;}.login-box{padding:20px!important;}}
+</style>
+</head>
+<body>
+<button id="cornerCabinetBtn" type="button" title="Shaxsiy kabinet">
+
+<div id="finalMyCaseCodes" style="margin-top:18px;">
+  <h4>🔑 CASE kodlarim</h4>
+  <div id="finalMyCaseCodesList"></div>
+</div>
+👤</button>
+
+<header>
+  <div class="header-inner">
+    <button class="logo" data-view="landing">
+      <div class="logo-badge" id="logoBadge">🐶</div>
+      <div class="logo-text">BULLDROP<span>.VIP</span></div>
+    </button>
+    <nav class="desktop-nav">
+      <a href="#" data-view="landing" class="nav-landing active">Bosh sahifa</a>
+      <a href="#" data-view="shop" data-anchor="pm">PM</a>
+      <a href="#" data-view="shop" data-anchor="uc">UC</a>
+      
+      <a href="#" data-view="case" class="nav-case">CASE</a> 
+      <button class="navlink" id="promoNavBtn">🎟️ PROMO</button>
+      <a href="#" data-view="landing" data-anchor="about">Biz haqimizda</a>
+      <button class="navlink" id="adminNavBtn">ADMIN</button>
+    </nav>
+    <div class="header-right">
+      <button class="balance-chip" id="balanceChip">💳 <span id="balLabel">Kirish</span></button>
+      <button class="btn btn-gold" data-view="shop" id="headerShopBtn">🛒 SHOP</button>
+      <button class="burger" id="burgerBtn">☰</button>
+    </div>
+  </div>
+</header>
+
+<div class="modal-overlay" id="mobileMenu">
+  <div class="modal-box" style="max-width:340px;">
+    <div class="modal-head"><h3>Menyu</h3><button class="modal-close" data-close="mobileMenu">✕</button></div>
+    <div class="mobile-menu-card">
+      <a href="#" data-view="landing">Bosh sahifa</a>
+      <a href="#" data-view="shop" data-anchor="pm">PM</a>
+      <a href="#" data-view="shop" data-anchor="uc">UC</a>
+      
+      <a href="#" data-view="case" class="nav-case">CASE</a>
+      <button id="promoNavBtnMobile">🎟️ PROMO</button>
+      <a href="#" data-view="landing" data-anchor="about">Biz haqimizda</a>
+      <button data-view="shop">🛒 Shopga kirish</button>
+      <button id="adminNavBtnMobile">🔑 ADMIN</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============== LANDING VIEW ============== -->
+<main class="view wrap" id="landingView">
+
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow" style="animation:fadeInUp .7s ease .05s both;">⚡ BULLDROP.VIP</div>
+        <h1 class="title" style="animation:fadeInUp .8s ease .15s both;"><span class="bull">BULL</span><span class="drop">DROP</span></h1>
+        <div class="subtitle-tag" style="animation:fadeInUp .8s ease .28s both;">Zamonaviy digital platform</div>
+        <p class="hero-desc" style="animation:fadeInUp .8s ease .38s both;">Premium mahsulotlar va xizmatlar — <b>PM</b> va <b>UC</b> to‘plamlarini xavfsiz, tez va qulay narxlarda xarid qiling. Barcha to‘lovlar admin tomonidan tasdiqlanadi.</p>
+        <div class="hero-btns" style="animation:fadeInUp .8s ease .5s both;">
+          <button class="btn btn-gold" data-view="shop">🛒 BULLDROP SAYTIGA KIRISH</button>
+          <a href="#" class="btn btn-outline" data-view="landing" data-anchor="about">ℹ️ BIZ HAQIMIZDA</a>
+        </div>
+        <div class="stat-row" style="animation:fadeInUp .8s ease .62s both;">
+          <div class="stat"><div class="ic">🛡️</div><div><div class="num">100%</div><div class="lbl">Xavfsiz to‘lov</div></div></div>
+          <div class="stat"><div class="ic">⚡</div><div><div class="num">24/7</div><div class="lbl">Qo‘llab-quvvatlash</div></div></div>
+          <div class="stat"><div class="ic">👑</div><div><div class="num">Premium</div><div class="lbl">Xizmat sifati</div></div></div>
+        </div>
+      </div>
+      <div class="hero-visual" style="animation:fadeIn 1s ease .3s both;">
+        <div class="ring ring-1"></div>
+        <div class="hero-badge">🐶</div>
+        <div class="floater f1">🟣 PM mahsulotlari</div>
+        <div class="floater f2">🟡 UC paketlari</div>
+        <div class="floater f3">🔐 KEYS — tez orada</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="categories">
+    <div class="cat-grid">
+      <div class="cat-card pm reveal" data-view="shop" data-anchor="pm">
+        <div class="cat-icon">🟣</div>
+        <div><div class="cat-sub">PM mahsulotlari</div><h3>PM</h3></div>
+        <p>Turli xil PM mahsulotlarini eng qulay narxlarda xarid qiling. Zudlik bilan yetkazib berish.</p>
+        <span class="cat-link">Ko‘rish <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="cat-card uc reveal" data-view="shop" data-anchor="uc">
+        <div class="cat-icon">🟡</div>
+        <div><div class="cat-sub">UC paketlari</div><h3>UC</h3></div>
+        <p>UC paketlarini qulay narxlarda xarid qiling. Tezkor va ishonchli yetkazib berish tizimi.</p>
+        <span class="cat-link">Ko‘rish <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="cat-card keys reveal" id="keysCardLanding">
+        <div class="cat-icon">🔐</div>
+        <div><div class="cat-sub">Keys bo‘limi</div><h3>KEYS</h3></div>
+        <p id="keysCardLandingDesc">Keys bo‘limi hozircha yopiq. Tez orada ishga tushadi. Kutib turing!</p>
+        <span class="cat-link">Tez orada <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="about reveal">
+      <div>
+        <div class="section-eyebrow">Biz haqimizda</div>
+        <h2>Nega aynan BULLDROP.VIP?</h2>
+        <p class="lead">BULLDROP.VIP — bu ishonchli va zamonaviy raqamli mahsulotlar platformasi. Biz mijozlarimizga PM va UC mahsulotlarini eng qulay narxlarda, tez va xavfsiz tarzda taqdim etamiz. Har bir to‘lov admin tomonidan shaxsan tekshiriladi va tasdiqlanadi.</p>
+        <button class="btn btn-purple" data-view="shop">Shopni ko‘rish</button>
+      </div>
+      <div class="about-feats">
+        <div class="feat"><div class="ic">🛡️</div><div><h4>Xavfsiz to‘lov</h4><p>Har bir to‘lov chek orqali admin tomonidan qo‘lda tasdiqlanadi.</p></div></div>
+        <div class="feat"><div class="ic">⚡</div><div><h4>Tezkor xizmat</h4><p>Buyurtmalar tasdiqlangandan so‘ng zudlik bilan hisobingizga tushadi.</p></div></div>
+        <div class="feat"><div class="ic">💬</div><div><h4>24/7 qo‘llab-quvvatlash</h4><p>Har qanday savol yoki muammo bo‘yicha doimiy yordam.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shop-banner reveal">
+      <div class="shop-banner-text">
+        <div class="section-eyebrow">🚀 BULLDROP SHOP</div>
+        <h2>Mavjud PM va UC mahsulotlarini ko‘rish uchun BULLDROP shop sahifasiga o‘ting</h2>
+        <p>Barcha faol mahsulotlar, narxlar va qoldiqlar shop sahifasida real vaqt rejimida ko‘rsatiladi.</p>
+      </div>
+      <button class="btn btn-gold" data-view="shop">SHOP'GA KIRISH →</button>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============== SHOP VIEW ============== -->
+<main class="view wrap" id="shopView" style="display:none;">
+  <div class="page-head">
+    <h1>BULLDROP Shop</h1>
+    <p>Mavjud PM va UC mahsulotlarini tanlang, hisobingiz balansidan xarid qiling.</p>
+  </div>
+
+  <section class="section pm" id="pm">
+    <div class="section-title-row">
+      <div class="section-icon">🟣</div><h2>PM</h2><span class="cnt" id="pmCount"></span>
+    </div>
+    <div class="prod-grid" id="pmGrid"></div>
+  </section>
+
+  <section class="section uc" id="uc">
+    <div class="section-title-row">
+      <div class="section-icon">🟡</div><h2>UC</h2><span class="cnt" id="ucCount"></span>
+    </div>
+    <div class="prod-grid" id="ucGrid"></div>
+  </section>
+
+  <section class="section" id="keys">
+    <div class="section-title-row">
+      <div class="section-icon" style="background:rgba(120,150,255,.14);border:1px solid rgba(120,150,255,.32);">🔐</div><h2>KEYS</h2>
+    </div>
+    <div class="keys-box reveal" id="keysBoxShop">
+      <div class="ic" id="keysBoxIcon">🔐</div>
+      <h3 id="keysBoxTitle">Tez orada ishga tushadi</h3>
+    </div>
+  </section>
+</main>
+
+<!-- ============== CASE VIEW ============== -->
+<main class="view" id="caseView" style="display:none;">
+  <div class="bg-glow"></div>
+  <div class="case-wrap">
+
+    <div class="notice">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--violet)"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+      <div>Bu yerdagi barcha buyumlar — avatar ramkalari, ism ranglari va unvonlar — faqat estetik bezaklar bo'lib, hech qanday pul yoki almashtiriladigan qiymatga ega emas. Ular sotib olinmaydi, sotilmaydi va real valyutaga aylantirilmaydi.</div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-top">
+        <div class="case-tag">SIGNATURE COSMETIC CASE</div>
+        <div class="case-title display">Boshlang'ich to'plam</div>
+        <div class="case-sub">Case oching va profilingiz uchun noyob ramka, ism rangi yoki unvon qo'lga kiriting. Har bir buyum — faqat ko'rinish uchun.</div>
+
+        <div class="case-visual" id="caseVisual">
+          <div class="case-ring"></div>
+          <div class="box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--crimson-bright)" stroke-width="1.6"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
+          </div>
+        </div>
+
+        <div id="caseOpenPrice" style="margin-top:10px;color:var(--gold);font-weight:800;font-size:14px;">10 000 so‘m / 1 ta CASE</div>
+        <button class="open-btn display" id="openBtn">CASE OCHISH</button>
+      </div>
+
+      <div class="contents-label">Mumkin bo'lgan buyumlar</div>
+      <div class="contents-grid" id="contentsGrid"></div>
+    </div>
+
+    <div class="section-head">
+      <h2>Virtual jamlanma</h2>
+      <span class="cnt" id="invCount">0 ta buyum</span>
+    </div>
+    <div class="case-filters" id="caseFilters">
+      <button class="filter-btn active" data-f="all">Barchasi</button>
+      <button class="filter-btn" data-f="frame">Ramkalar</button>
+      <button class="filter-btn" data-f="color">Ism ranglari</button>
+      <button class="filter-btn" data-f="title">Unvonlar</button>
+    </div>
+    <div id="invArea"></div>
+
+  </div>
+
+  <div class="case-overlay" id="caseOverlay">
+    <div class="carousel-stage" id="caseStage">
+      <div class="center-marker"><div class="tri top"></div><div class="tri bottom"></div></div>
+      <div class="reel" id="caseReel"></div>
+    </div>
+    <div class="stage-caption" id="caseStageCaption">Case ochilmoqda...</div>
+
+    <div class="case-reveal" id="caseReveal">
+      <div class="reveal-badge">TABRIKLAYMIZ!</div>
+      <div class="reveal-icon-wrap" id="revealIconWrap"></div>
+      <div class="reveal-name" id="revealName"></div>
+      <div class="reveal-tier" id="revealTier"></div>
+      <div class="reveal-note" id="revealNote">Shaxsiy kabinetingizdagi jamlanmaga qo'shildi.</div>
+      <div id="revealCodeBox" style="display:none;background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:22px;">
+        <div style="font-size:12px;color:var(--text-dim-2);margin-bottom:4px;">Yutuq kodingiz — kabinetda saqlanadi. PROMO bo'limida ishlating:</div>
+        <div style="display:flex;align-items:center;gap:10px;justify-content:center;">
+          <div id="revealCodeText" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:17px;color:var(--gold);"></div>
+          <button class="case-btn-ghost" id="revealCodeCopy" style="padding:6px 12px;font-size:12.5px;">Nusxalash</button>
+        </div>
+      </div>
+      <div class="reveal-actions">
+        <button class="case-btn-ghost display" id="gotoInv">KABINETGA O'TISH</button>
+        <button class="btn-solid display" id="openAgain">YANA OCHISH</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+<section id="finalPromoBox" class="card">
+  <h3 style="margin:0 0 6px;">🎟️ PROMO</h3>
+  <p class="muted" style="margin:0 0 12px;">Promo kodni kiriting. Har bir foydalanuvchi kuniga 1 marta ishlata oladi.</p>
+  <div class="promo-line">
+    <input id="finalPromoInput" type="text" maxlength="80" placeholder="PROMO KOD">
+    <button id="finalPromoUse" class="btn btn-gold" type="button">ISHLATISH</button>
+  </div>
+  <div id="finalPromoStatus" class="final-status"></div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <div class="logo-badge" id="footerLogoBadge">🐶</div>
+      <div class="footer-copy"><b>© 2026 BULLDROP.VIP</b><br>Premium Digital Shop</div>
+    </div>
+    <div class="socials">
+      <a href="#" aria-label="Telegram">✈️</a>
+      <a href="#" aria-label="Instagram">📷</a>
+      <a href="#" aria-label="YouTube">▶️</a>
+    </div>
+  </div>
+</footer>
+
+<!-- KEYS MODAL -->
+<div class="modal-overlay" id="keysModal">
+  <div class="modal-box" style="text-align:center;">
+    <div class="center-icon" id="keysModalIconBox" style="background:rgba(120,150,255,.14);border:1px solid rgba(120,150,255,.35);">🔐</div>
+    <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:800;font-size:20px;margin-bottom:10px;">KEYS</h3>
+    <p style="color:var(--text-dim);font-size:14.5px;margin-bottom:20px;">Ushbu bo‘lim hozircha ishlamayapti.</p>
+    <div style="display:inline-flex;background:var(--gold-soft);color:var(--gold);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;padding:8px 16px;border-radius:100px;margin-bottom:20px;" id="keysModalTag">🚀 <span id="keysModalTagText">TEZ ORADA ISHGA TUSHADI</span></div>
+    <button class="btn btn-outline btn-block" data-close="keysModal">YOPISH</button>
+  </div>
+</div>
+
+<!-- LOGIN / REGISTRATION MODAL -->
+<div class="modal-overlay" id="loginModal" aria-hidden="true">
+  <div class="modal-box login-box">
+    <div class="login-top">
+      <div class="login-avatar">👤</div>
+      <div class="modal-head" style="margin:0;flex:1;">
+        <div><h3>Hisobga kirish</h3><p>Yangi akkaunt ochish yoki mavjud akkauntga kirish</p></div>
+        <button class="modal-close" data-close="loginModal" aria-label="Yopish">✕</button>
+      </div>
+    </div>
+
+    <div class="login-fields">
+      <div class="field">
+        <label for="loginName">👤 Ism</label>
+        <input type="text" id="loginName" placeholder="Ismingizni kiriting" autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="loginAge">🎂 Yosh</label>
+        <input type="number" id="loginAge" placeholder="Yoshingiz" min="1" max="120" inputmode="numeric">
+      </div>
+      <div class="field">
+        <label for="loginPhone">📱 Telefon raqam</label>
+        <input type="tel" id="loginPhone" placeholder="+998 90 123 45 67" autocomplete="tel">
+      </div>
+    </div>
+
+    <div class="login-rule">
+      <div class="login-rule-icon">⏳</div>
+      <div><b>5 kunlik ro‘yxatdan o‘tish qoidasi</b><span>Bir telefon yoki qurilmadan yangi akkaunt 5 kunda 1 marta ochiladi.</span></div>
+    </div>
+
+    <div id="loginCooldownNote" class="login-cooldown" style="display:none;"></div>
+    <button class="btn btn-gold btn-block login-submit" id="simpleRegisterBtn">Kirish / Ro‘yxatdan o‘tish</button>
+
+    <div class="login-divider"><span>yoki</span></div>
+    <div id="googleSignInBtn" style="display:flex;justify-content:center;margin-bottom:8px;"></div>
+    <div id="googleNotConfigured" style="display:none;font-size:12px;color:var(--text-dim-2);text-align:center;line-height:1.5;margin-bottom:4px;">Google kirish sozlanmagan.</div>
+    <div class="login-secure">🔒 Ma’lumotlaringiz xavfsiz saqlanadi</div>
+  </div>
+</div>
+
+<!-- ACCOUNT MODAL -->
+<div class="modal-overlay" id="accountModal">
+  <div class="modal-box">
+    <div class="modal-head"><h3>💳 Mening hisobim</h3><button class="modal-close" data-close="accountModal">✕</button></div>
+    <div class="card-display" style="display:flex;align-items:center;gap:12px;">
+      <img id="accAvatar" src="" style="width:44px;height:44px;border-radius:50%;display:none;border:1px solid var(--line);">
+      <div style="flex:1;">
+        <div class="ch" id="accName">—</div>
+        <div class="cn" id="accBalance">0 so‘m</div>
+        <div class="ch" id="accEmail">—</div>
+      </div>
+    </div>
+    <div class="card-display" style="display:flex;align-items:center;justify-content:space-between;">
+      <div>
+        <div class="ch">🎡 Bepul spinlaringiz</div>
+        <div class="cn" id="accSpins" style="color:var(--purple);">0 ta</div>
+      </div>
+      <button class="btn btn-purple btn-sm" id="openSpinBtn">AYLANTIRISH</button>
+    </div>
+    <button class="btn btn-gold btn-block" id="openTopupBtn" style="margin-bottom:10px;">➕ HISOBNI TO‘LDIRISH</button>
+    <div style="margin-top:6px;margin-bottom:14px;">
+      <div class="ch" style="margin-bottom:8px;">🎟️ Yutgan promo kodlarim</div>
+      <div id="accCodesList" style="display:flex;flex-direction:column;gap:8px;"></div>
+    </div>
+    <button class="btn btn-ghost btn-block" id="logoutBtn">Chiqish</button>
+  </div>
+</div>
+
+<!-- TOPUP MODAL -->
+<div class="modal-overlay" id="topupModal">
+  <div class="modal-box">
+    <div class="modal-head"><h3>💳 Hisobni to‘ldirish</h3><button class="modal-close" data-close="topupModal">✕</button></div>
+    <div class="field"><label>Summa (so‘m)</label><input type="number" id="topupAmount" placeholder="Masalan: 50000" min="1"></div>
+    <div id="topupCardBox" class="card-display" style="display:none;">
+      <div class="ch">To‘lov uchun karta raqami:</div>
+      <div class="cn" id="topupCardNumber">—</div>
+      <div class="ch" id="topupCardHolder">—</div>
+    </div>
+    <div class="field"><label>To‘lov chekini yuklang (rasm)</label><input type="file" id="topupReceipt" accept="image/*"></div>
+    <p class="modal-note">Summa → karta → chek → admin → tasdiqlash → balans. To‘lovingiz admin tomonidan tekshirilgach, hisobingiz balansiga qo‘shiladi.</p>
+    <button class="btn btn-gold btn-block" id="topupSubmit" style="margin-top:14px;">CHEKNI YUBORISH</button>
+  </div>
+</div>
+
+<!-- BUY MODAL -->
+<div class="modal-overlay" id="buyModal">
+  <div class="modal-box">
+    <div class="modal-head"><h3 id="buyTitle">Xarid qilish</h3><button class="modal-close" data-close="buyModal">✕</button></div>
+    <div id="buyBody"></div>
+  </div>
+</div>
+
+<!-- SPIN MODAL -->
+<div class="modal-overlay" id="spinModal">
+  <div class="modal-box wide" style="text-align:center;">
+    <div class="modal-head"><h3>🎡 Bonus g‘ildirak</h3><button class="modal-close" data-close="spinModal">✕</button></div>
+    <div id="spinWheelWrap" style="position:relative;width:240px;height:240px;margin:0 auto 20px;">
+      <div id="spinPointer" style="position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:12px solid transparent;border-right:12px solid transparent;border-top:20px solid var(--gold);z-index:3;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5));"></div>
+      <div id="spinWheel" style="width:100%;height:100%;border-radius:50%;border:4px solid var(--panel-2);box-shadow:0 0 0 2px var(--purple), 0 20px 60px rgba(141,77,255,.35);transition:transform 4.5s cubic-bezier(.12,.85,.15,1);"></div>
+      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:var(--panel);border:2px solid var(--gold);z-index:3;display:flex;align-items:center;justify-content:center;font-size:18px;">🎁</div>
+    </div>
+    <div id="spinStatusText" style="font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15px;color:var(--text-dim);margin-bottom:14px;"></div>
+    <button class="btn btn-gold btn-block" id="spinActionBtn">🎡 AYLANTIRISH</button>
+    <div style="margin-top:20px;text-align:left;">
+      <div class="section-eyebrow" style="margin-bottom:10px;">Ehtimolliklar (shaffof)</div>
+      <div id="spinOddsList" style="display:flex;flex-direction:column;gap:6px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PROMO CODE MODAL -->
+<div class="modal-overlay" id="promoModal">
+  <div class="modal-box" style="text-align:center;">
+    <div class="modal-head"><h3>🎟️ Promo kod</h3><button class="modal-close" data-close="promoModal">✕</button></div>
+    <p style="color:var(--text-dim);font-size:13.5px;margin-bottom:18px;">Case ochganingizda tushgan yutuq kodini shu yerga kiriting.</p>
+    <div class="field" style="text-align:left;"><label>Kod</label><input type="text" id="promoCodeInput" placeholder="Masalan: BULL-XXXX-XXXX" style="text-transform:uppercase;"></div>
+    <button class="btn btn-gold btn-block" id="promoCodeSubmit">KODNI TEKSHIRISH</button>
+  </div>
+</div>
+
+<!-- ADMIN LOGIN MODAL -->
+<div class="modal-overlay" id="adminLoginModal">
+
+<section id="finalPromoAdmin" class="admin-panel" style="display:none;">
+  <div class="panel-head">
+    <div>
+      <h3>PROMO KODLARI</h3>
+      <p class="muted">Har bir promo koddan 5 kishi foydalanadi. Har bir foydalanuvchi shu kodni kuniga 1 marta ishlata oladi.</p>
+    </div>
+  </div>
+  <div class="form-grid">
+    <div class="field">
+      <label>PROMO KOD</label>
+      <input id="finalPromoAdminCode" type="text" maxlength="80" placeholder="Masalan: BULL60">
+    </div>
+    <div class="field">
+      <label>MUKOFOT</label>
+      <select id="finalPromoAdminReward">
+        <option value="uc60">60 UC</option>
+        <option value="pm99">99 lik PM</option>
+      </select>
+    </div>
+  </div>
+  <button id="finalPromoAdminAdd" class="btn btn-gold" type="button">+ PROMO QO‘SHISH</button>
+  <div style="margin-top:16px;overflow:auto;">
+    <table>
+      <thead><tr><th>Kod</th><th>Mukofot</th><th>Foydalanish</th><th>Holat</th></tr></thead>
+      <tbody id="finalPromoAdminBody"></tbody>
+    </table>
+  </div>
+</section>
+
+  <div class="modal-box">
+    <div class="modal-head"><h3>🔑 Admin panel</h3><button class="modal-close" data-close="adminLoginModal">✕</button></div>
+    <div class="field"><label>Admin parol</label><input type="text" id="adminPassword" placeholder="Parolni kiriting"></div>
+    <button class="btn btn-purple btn-block" id="adminLoginSubmit">KIRISH</button>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="admin-overlay" id="adminOverlay">
+  <div class="admin-top">
+    <h2>🔑 Admin panel — BULLDROP.VIP</h2>
+    <button class="btn btn-ghost btn-sm" id="adminCloseBtn">✕ Yopish</button>
+  </div>
+  <div class="admin-body">
+    <div class="admin-tabs">
+      <button class="admin-tab active" data-tab="users">👥 Foydalanuvchilar</button>
+      <button class="admin-tab" data-tab="payments">💳 To‘lovlar</button>
+      <button class="admin-tab" data-tab="pm">🟣 PM</button>
+      <button class="admin-tab" data-tab="uc">🟡 UC</button>
+      <button class="admin-tab" data-tab="keys">🔐 KEYS</button>
+      <button class="admin-tab" data-tab="bonus">🎡 Bonus</button>
+      <button class="admin-tab" data-tab="case">🎁 Case / Promo</button>
+      <button class="admin-tab" data-tab="settings">⚙️ Sozlamalar</button>
+    </div>
+
+    <div class="admin-panel active" id="tab-users">
+      <div class="admin-card">
+        <h3>Foydalanuvchilar</h3>
+        <table class="admin-table"><thead><tr><th>Ism</th><th>Email</th><th>Balans</th><th>Spinlar</th></tr></thead><tbody id="usersTableBody"></tbody></table>
+      </div>
+    </div>
+
+    <div class="admin-panel" id="tab-payments">
+      <div class="admin-card">
+        <h3>To‘lovlar (hisob to‘ldirish so‘rovlari)</h3>
+        <table class="admin-table"><thead><tr><th>Chek</th><th>Foydalanuvchi</th><th>Summa</th><th>Sana</th><th>Holat</th><th>Amal</th></tr></thead><tbody id="paymentsTableBody"></tbody></table>
+      </div>
+    </div>
+
+    <div class="admin-panel" id="tab-pm">
+      <div class="admin-card">
+        <h3 id="pmFormTitle">PM mahsulot qo‘shish</h3>
+        <input type="hidden" id="pmEditId">
+        <div class="field-row">
+          <div class="field"><label>Mahsulot nomi</label><input type="text" id="pmName" placeholder="Masalan: PM 42lik"></div>
+          <div class="field"><label>Narx (so‘m)</label><input type="number" id="pmPrice" placeholder="Masalan: 35000"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Qoldiq (dona)</label><input type="number" id="pmStock" placeholder="Masalan: 15"></div>
+          <div class="field"><label>Chegirma % (ixtiyoriy)</label><input type="number" id="pmDiscount" placeholder="Masalan: 10"></div>
+        </div>
+        <div class="field"><label>Tavsif</label><textarea id="pmDesc" placeholder="Mahsulot haqida qisqacha"></textarea></div>
+        <div class="field-row">
+          <div class="field"><label>🖼 Rasm</label><input type="file" id="pmImage" accept="image/*"></div>
+          <div class="field"><label>🎥 Video</label><input type="file" id="pmVideo" accept="video/*"></div>
+        </div>
+        <div class="field"><label><input type="checkbox" id="pmActive" checked style="width:auto;margin-right:6px;">Faol (shopda ko‘rinsin)</label></div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-purple" id="pmSaveBtn">SAQLASH</button>
+          <button class="btn btn-ghost" id="pmCancelEdit" style="display:none;">Bekor qilish</button>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>PM mahsulotlar ro‘yxati</h3>
+        <table class="admin-table"><thead><tr><th>Rasm</th><th>Nomi</th><th>Narx</th><th>Qoldiq</th><th>Holat</th><th>Amal</th></tr></thead><tbody id="pmTableBody"></tbody></table>
+      </div>
+    </div>
+
+    <div class="admin-panel" id="tab-uc">
+      <div class="admin-card">
+        <h3 id="ucFormTitle">UC mahsulot qo‘shish</h3>
+        <input type="hidden" id="ucEditId">
+        <div class="field-row">
+          <div class="field"><label>UC miqdori</label>
+            <select id="ucAmount">
+              <option value="12">12 UC</option><option value="60">60 UC</option><option value="240">240 UC</option>
+              <option value="325">325 UC</option><option value="660">660 UC</option><option value="1320">1320 UC</option>
+              <option value="2640">2640 UC</option><option value="8100">8100 UC</option>
+            </select>
+          </div>
+          <div class="field"><label>Narx (so‘m)</label><input type="number" id="ucPrice" placeholder="Admin belgilaydi"></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Qoldiq (dona)</label><input type="number" id="ucStock" placeholder="Masalan: 20"></div>
+          <div class="field"><label>Chegirma % (ixtiyoriy)</label><input type="number" id="ucDiscount" placeholder="Masalan: 5"></div>
+        </div>
+        <div class="field"><label>Tavsif</label><textarea id="ucDesc" placeholder="Mahsulot haqida qisqacha"></textarea></div>
+        <div class="field-row">
+          <div class="field"><label>🖼 Rasm</label><input type="file" id="ucImage" accept="image/*"></div>
+          <div class="field"><label>🎥 Video</label><input type="file" id="ucVideo" accept="video/*"></div>
+        </div>
+        <div class="field"><label><input type="checkbox" id="ucActive" checked style="width:auto;margin-right:6px;">Faol (shopda ko‘rinsin)</label></div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-purple" id="ucSaveBtn">SAQLASH</button>
+          <button class="btn btn-ghost" id="ucCancelEdit" style="display:none;">Bekor qilish</button>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>UC mahsulotlar ro‘yxati</h3>
+        <table class="admin-table"><thead><tr><th>Rasm</th><th>Miqdor</th><th>Narx</th><th>Qoldiq</th><th>Holat</th><th>Amal</th></tr></thead><tbody id="ucTableBody"></tbody></table>
+      </div>
+    </div>
+
+    <div class="admin-panel" id="tab-keys">
+      <div class="admin-card">
+        <h3>KEYS bo‘limi sozlamalari</h3>
+        <p class="modal-note" style="margin-bottom:16px;">KEYS bo‘limi hozircha yopiq holatda ishlaydi. Bu yerda faqat sarlavha va rasmni boshqarishingiz mumkin.</p>
+        <div class="field"><label>Sarlavha matni</label><input type="text" id="setKeysTitle" placeholder="Tez orada ishga tushadi"></div>
+        <div class="field"><label>🖼 Keys rasmi</label><input type="file" id="setKeysImage" accept="image/*"></div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-purple" id="setKeysSave">SAQLASH</button>
+          <button class="btn btn-ghost" id="setKeysImageRemove">Rasmni o‘chirish</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="admin-panel" id="tab-bonus">
+      <div class="admin-card">
+        <h3>Bonus spin qoidalari</h3>
+        <p class="modal-note" style="margin-bottom:16px;">Spinlar bepul beriladi — foydalanuvchi hech qanday pul to‘lamaydi. Yangi ro‘yxatdan o‘tgan foydalanuvchiga avtomatik spin beriladi, shuningdek belgilangan summadan ko‘p xarid qilganlarga qo‘shimcha spin beriladi.</p>
+        <div class="field-row">
+          <div class="field"><label>Yangi foydalanuvchiga nechta spin berilsin</label><input type="number" id="setNewUserSpins" min="0" placeholder="Masalan: 1"></div>
+          <div class="field"><label>Necha so‘mlik xariddan keyin 1 spin berilsin</label><input type="number" id="setSpendThreshold" min="0" placeholder="Masalan: 100000"></div>
+        </div>
+        <button class="btn btn-purple" id="setBonusRulesSave">SAQLASH</button>
+      </div>
+      <div class="admin-card">
+        <h3 id="prizeFormTitle">Bonus mukofot qo‘shish</h3>
+        <input type="hidden" id="prizeEditId">
+        <div class="field-row">
+          <div class="field"><label>Mukofot nomi</label><input type="text" id="prizeName" placeholder="Masalan: 5 000 so‘m bonus"></div>
+          <div class="field"><label>Summa (so‘m)</label><input type="number" id="prizeAmount" placeholder="Masalan: 5000"></div>
+        </div>
+        <div class="field"><label>Ehtimollik (%)</label><input type="number" id="prizeProbability" min="0" max="100" placeholder="Masalan: 20"></div>
+        <div class="field"><label><input type="checkbox" id="prizeActive" checked style="width:auto;margin-right:6px;">Faol</label></div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-purple" id="prizeSaveBtn">SAQLASH</button>
+          <button class="btn btn-ghost" id="prizeCancelEdit" style="display:none;">Bekor qilish</button>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Mukofotlar ro‘yxati <span id="prizeTotalPct" style="color:var(--text-dim-2);font-size:13px;font-weight:600;"></span></h3>
+        <table class="admin-table"><thead><tr><th>Nomi</th><th>Summa</th><th>Ehtimol</th><th>Holat</th><th>Amal</th></tr></thead><tbody id="prizeTableBody"></tbody></table>
+      </div>
+      <div class="admin-card">
+        <h3>So‘nggi spinlar</h3>
+        <table class="admin-table"><thead><tr><th>Foydalanuvchi</th><th>Yutuq</th><th>Sana</th></tr></thead><tbody id="spinHistoryBody"></tbody></table>
+      </div>
+    </div>
+
+    <div class="admin-panel" id="tab-case">
+      <div class="admin-card">
+        <h3 id="caseItemFormTitle">Case sovg'asi (buyum) qo‘shish</h3>
+        <input type="hidden" id="caseItemEditId">
+        <div class="field-row">
+          <div class="field"><label>Buyum nomi</label><input type="text" id="caseItemName" placeholder="Masalan: 60 UC sovg'a"></div>
+          <div class="field"><label>Turi</label>
+            <select id="caseItemType">
+              <option value="frame">Ramka</option>
+              <option value="color">Ism rangi</option>
+              <option value="title">Unvon</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label>Daraja</label>
+            <select id="caseItemTier">
+              <option value="common">Oddiy</option>
+              <option value="rare">Noyob</option>
+              <option value="epic">Epik</option>
+              <option value="legendary">Afsonaviy</option>
+            </select>
+          </div>
+          <div class="field"><label>Ehtimollik (%)</label><input type="number" id="caseItemChance" min="0" max="100" placeholder="Masalan: 10"></div>
+        </div>
+        <div class="field"><label>Ikonka</label>
+          <select id="caseItemIcon">
+            <option value="frame_ring">Halqa</option>
+            <option value="frame_flame">Olov ramka</option>
+            <option value="frame_dragon">Ajdaho ramka</option>
+            <option value="frame_crown">Toj ramka</option>
+            <option value="color_droplet">Tomchi</option>
+            <option value="color_spark">Uchqun</option>
+            <option value="title_shield">Qalqon</option>
+            <option value="title_star">Yulduz</option>
+          </select>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-purple" id="caseItemSaveBtn">SAQLASH</button>
+          <button class="btn btn-ghost" id="caseItemCancelEdit" style="display:none;">Bekor qilish</button>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Case buyumlari ro‘yxati <span id="caseItemTotalPct" style="color:var(--text-dim-2);font-size:13px;font-weight:600;"></span></h3>
+        <table class="admin-table"><thead><tr><th>Nomi</th><th>Turi</th><th>Daraja</th><th>Ehtimol</th><th>Faol kodlar</th><th>Amal</th></tr></thead><tbody id="caseItemTableBody"></tbody></table>
+      </div>
+      <div class="admin-card">
+        <h3>Yutuq kodi qo‘shish</h3>
+        <p class="modal-note" style="margin-bottom:16px;">Har bir kod faqat bitta marta ishlatiladi. Foydalanuvchi case ochib shu buyumni yutganda, tizim shu kodlardan birini beradi. Kod PROMO bo'limida kiritilib tasdiqlanadi.</p>
+        <div class="field-row">
+          <div class="field"><label>Qaysi buyum uchun</label><select id="caseCodeItem"></select></div>
+          <div class="field"><label>Kod</label><input type="text" id="caseCodeValue" placeholder="Masalan: BULL-4F9A-22XZ" style="text-transform:uppercase;"></div>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-purple" id="caseCodeSaveBtn">KOD QO‘SHISH</button>
+          <button class="btn btn-ghost" id="caseCodeGenBtn">🎲 Tasodifiy kod</button>
+        </div>
+      </div>
+      <div class="admin-card">
+        <h3>Barcha promo kodlar</h3>
+        <table class="admin-table"><thead><tr><th>Kod</th><th>Buyum</th><th>Holat</th><th>Foydalanuvchi</th><th>Sana</th><th>Amal</th></tr></thead><tbody id="caseCodeTableBody"></tbody></table>
+      </div>
+    </div>
+
+    <div class="admin-panel" id="tab-settings">
+      <div class="admin-card">
+        <h3>To‘lov karta ma’lumotlari</h3>
+        <div class="field-row">
+          <div class="field"><label>Karta raqami</label><input type="text" id="setCardNumber" placeholder="8600 0000 0000 0000"></div>
+          <div class="field"><label>Karta egasi</label><input type="text" id="setCardHolder" placeholder="ISM FAMILIYA"></div>
+        </div>
+        <button class="btn btn-purple" id="setCardSave">SAQLASH</button>
+      </div>
+      <div class="admin-card">
+        <h3>Brend rasmlari</h3>
+        <div class="field-row">
+          <div class="field"><label>Logotip rasmi</label><input type="file" id="setLogo" accept="image/*"></div>
+          <div class="field"><label>Fon rasmi (hero)</label><input type="file" id="setBg" accept="image/*"></div>
+        </div>
+        <button class="btn btn-purple" id="setBrandSave">SAQLASH</button>
+      </div>
+      <div class="admin-card">
+        <h3>Admin parolini o‘zgartirish</h3>
+        <div class="field"><label>Yangi parol</label><input type="text" id="setNewPassword" placeholder="Yangi parol"></div>
+        <button class="btn btn-purple" id="setPasswordSave">PAROLNI YANGILASH</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RECEIPT PREVIEW MODAL -->
+<div class="modal-overlay" id="receiptPreviewModal">
+  <div class="modal-box" style="text-align:center;">
+    <div class="modal-head"><h3>Chek</h3><button class="modal-close" data-close="receiptPreviewModal">✕</button></div>
+    <img id="receiptPreviewImg" style="width:100%;border-radius:12px;">
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===================== STORE ===================== */
+const STORE_KEY = 'bulldropStore';
+function getStore(){
+  let raw;
+  try{ raw = localStorage.getItem(STORE_KEY); }catch(e){ raw = null; }
+  if(!raw){
+    const initial = {
+      products:[], settings:{cardNumber:'',cardHolder:'',adminPassword:'bulldrop2026',heroImage:'',logoImage:'',keysTitle:'Tez orada ishga tushadi',keysImage:'',newUserSpins:1,spendThreshold:100000},
+      users:[], payments:[], prizes:[], spinHistory:[], phoneRequests:[], currentUserId:null,
+      caseItems:null, caseCodes:[]
+    };
+    try{ localStorage.setItem(STORE_KEY, JSON.stringify(initial)); }catch(e){}
+    return initial;
+  }
+  try{
+    const parsed = JSON.parse(raw);
+    if(!parsed.prizes) parsed.prizes = [];
+    if(!parsed.spinHistory) parsed.spinHistory = [];
+    if(!parsed.phoneRequests) parsed.phoneRequests = [];
+    if(parsed.settings.newUserSpins===undefined) parsed.settings.newUserSpins = 1;
+    if(parsed.settings.spendThreshold===undefined) parsed.settings.spendThreshold = 100000;
+    if(parsed.settings.keysTitle===undefined) parsed.settings.keysTitle = 'Tez orada ishga tushadi';
+    if(parsed.settings.keysImage===undefined) parsed.settings.keysImage = '';
+    if(parsed.caseItems===undefined) parsed.caseItems = null;
+    if(!parsed.caseCodes) parsed.caseCodes = [];
+    return parsed;
+  }catch(e){
+    const initial = {products:[],settings:{cardNumber:'',cardHolder:'',adminPassword:'bulldrop2026',heroImage:'',logoImage:'',keysTitle:'Tez orada ishga tushadi',keysImage:'',newUserSpins:1,spendThreshold:100000},users:[],payments:[],prizes:[],spinHistory:[],phoneRequests:[],currentUserId:null,caseItems:null,caseCodes:[]};
+    return initial;
+  }
+}
+function setStore(s){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(s)); }catch(e){ console.error('Storage error', e); } }
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,8); }
+function fmt(n){ return Number(n).toLocaleString('ru-RU'); }
+
+/* ===================== CASE ITEMS + PROMO CODES (shared by admin + case view) ===================== */
+const CASE_ICONS = {
+  frame_ring: '<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/>',
+  frame_flame: '<path d="M12 2c2 4-1 5-1 8a4 4 0 108 0c0-2-1-3-2-4 1 3-1 4-2 3 1-3-1-4-3-7z"/>',
+  frame_dragon: '<path d="M4 12c2-5 6-8 10-8 3 0 5 2 5 4-3-1-5 0-6 2 3 0 5 1 5 3-3-1-5-1-6 1 2 1 3 3 2 5-2-1-3-3-5-3-4 0-7-2-5-4z"/>',
+  frame_crown: '<path d="M3 8l4 4 5-7 5 7 4-4-2 10H5L3 8z"/>',
+  color_droplet: '<path d="M12 3s6 6.5 6 11a6 6 0 11-12 0c0-4.5 6-11 6-11z"/>',
+  color_spark: '<path d="M12 2v6M12 16v6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M2 12h6M16 12h6M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2"/>',
+  title_shield: '<path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/>',
+  title_star: '<path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.7 7-6.3-3.9L5.7 21l1.7-7-5.4-4.7 7.1-.6L12 2z"/>'
+};
+const CASE_TIER_LABEL = { common:"Oddiy", rare:"Noyob", epic:"Epik", legendary:"Afsonaviy" };
+const CASE_TYPE_LABEL = { frame:"Avatar ramkasi", color:"Ism rangi", title:"Unvon" };
+const DEFAULT_CASE_ITEMS = [
+  { id:'i1', type:'frame', tier:'common', name:'Kulrang ramka', chance:32, icon:'frame_ring' },
+  { id:'i2', type:'color', tier:'common', name:'Kumush ism rangi', chance:32, icon:'color_droplet' },
+  { id:'i3', type:'frame', tier:'rare', name:'Zangori olov ramka', chance:12, icon:'frame_flame' },
+  { id:'i4', type:'color', tier:'rare', name:"Neon binafsha ism", chance:12, icon:'color_spark' },
+  { id:'i5', type:'title', tier:'epic', name:"Halol o'yinchi unvoni", chance:5, icon:'title_shield' },
+  { id:'i6', type:'frame', tier:'epic', name:'Ajdaho ramkasi', chance:5, icon:'frame_dragon' },
+  { id:'i7', type:'color', tier:'legendary', name:'Oltin alanga ismi', chance:1, icon:'color_spark' },
+  { id:'i8', type:'title', tier:'legendary', name:'Chempion unvoni', chance:1, icon:'frame_crown' }
+];
+function caseIconSvg(key, extraAttrs){ return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" '+(extraAttrs||'')+'>'+(CASE_ICONS[key]||'')+'</svg>'; }
+function getCaseItems(){ const s = getStore(); return (s.caseItems && s.caseItems.length) ? s.caseItems : DEFAULT_CASE_ITEMS; }
+function setCaseItems(items){ const s = getStore(); s.caseItems = items; setStore(s); }
+function getCaseCodes(){ return getStore().caseCodes || []; }
+function genPromoCode(){
+  const part = ()=>Math.random().toString(36).slice(2,6).toUpperCase();
+  return 'BULL-'+part()+'-'+part();
+}
+// Reserves one available code for the given item+user when a case is opened. Returns the code entry or null.
+function claimCodeForItem(itemId, userId){
+  if(!userId) return null;
+  const s = getStore();
+  const entry = (s.caseCodes||[]).find(c=>c.itemId===itemId && c.status==='available');
+  if(!entry) return null;
+  entry.status = 'won';
+  entry.wonBy = userId;
+  entry.wonAt = new Date().toISOString();
+  setStore(s);
+  return entry;
+}
+
+function toast(msg, err){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.toggle('err', !!err);
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(()=>t.classList.remove('show'), 2600);
+}
+
+/* ===================== VIEW ROUTING (SPA, no page reload) ===================== */
+function showView(view, anchor){
+  document.getElementById('landingView').style.display = view==='landing' ? '' : 'none';
+  document.getElementById('shopView').style.display = view==='shop' ? '' : 'none';
+  document.getElementById('caseView').style.display = view==='case' ? '' : 'none';
+  document.querySelectorAll('.nav-landing').forEach(el=>el.classList.toggle('active', view==='landing'));
+  document.querySelectorAll('.nav-case').forEach(el=>el.classList.toggle('active', view==='case'));
+  closeModal('mobileMenu');
+  if(anchor){
+    requestAnimationFrame(()=>{
+      requestAnimationFrame(()=>{
+        const el = document.getElementById(anchor);
+        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+  } else {
+    window.scrollTo({top:0, behavior:'instant' in window ? 'instant':'auto'});
+  }
+  try{ history.replaceState(null,'', view==='shop' ? '#shop'+(anchor?'-'+anchor:'') : (view==='case' ? '#case' : '#home')); }catch(e){}
+  observeReveals();
+}
+
+// Delegate all data-view clicks (works for buttons AND links, in header, hero, cards, banners, mobile menu)
+document.addEventListener('click', (e)=>{
+  const el = e.target.closest('[data-view]');
+  if(!el) return;
+  e.preventDefault();
+  showView(el.dataset.view, el.dataset.anchor);
+});
+
+/* ===================== MODAL HELPERS ===================== */
+function openModal(id){ const el=document.getElementById(id); if(!el)return; el.classList.add('open'); el.setAttribute('aria-hidden','false'); if(id==='loginModal') startLoginCooldownTimer(); }
+function closeModal(id){ const el=document.getElementById(id); if(el){el.classList.remove('open'); el.setAttribute('aria-hidden','true');} if(id==='loginModal') clearInterval(loginCooldownTimerHandle); }
+document.querySelectorAll('[data-close]').forEach(btn=>{ btn.addEventListener('click', ()=> closeModal(btn.dataset.close)); });
+document.querySelectorAll('.modal-overlay').forEach(ov=>{ ov.addEventListener('click', (e)=>{ if(e.target===ov) ov.classList.remove('open'); }); });
+
+/* ===================== BRANDING ===================== */
+function applyBranding(){
+  const s = getStore();
+  if(s.settings.logoImage){
+    document.querySelectorAll('.logo-badge').forEach(el=>{
+      el.style.backgroundImage = `url(${s.settings.logoImage})`;
+      el.style.backgroundSize='cover'; el.style.backgroundPosition='center'; el.textContent='';
+    });
+  }
+  if(s.settings.heroImage){
+    document.body.style.backgroundImage = `linear-gradient(rgba(5,5,7,.88),rgba(5,5,7,.96)), url(${s.settings.heroImage})`;
+    document.body.style.backgroundSize='cover';
+    document.body.style.backgroundAttachment='fixed';
+    document.body.style.backgroundPosition='center';
+  }
+}
+
+/* ===================== AUTH / BALANCE ===================== */
+const REGISTRATION_COOLDOWN_MS = 5 * 24 * 60 * 60 * 1000;
+function formatCooldown(ms){
+  ms=Math.max(0,ms);
+  const d=Math.floor(ms/86400000);
+  const h=Math.floor((ms%86400000)/3600000);
+  const m=Math.floor((ms%3600000)/60000);
+  const sec=Math.floor((ms%60000)/1000);
+  return `${d} kun ${h} soat ${m} daqiqa ${sec} soniya`;
+}
+const GOOGLE_CLIENT_ID = "YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com";
+function currentUser(){ const s=getStore(); return s.users.find(u=>u.id===s.currentUserId) || null; }
+function renderBalance(){
+  const u = currentUser();
+  document.getElementById('balLabel').textContent = u ? `${fmt(u.balance)} so‘m` : 'Kirish';
+}
+document.getElementById('balanceChip').addEventListener('click', ()=>{
+  const u = currentUser();
+  if(!u){ openModal('loginModal'); return; }
+  document.getElementById('accName').textContent = u.name;
+  document.getElementById('accEmail').textContent = u.email || '';
+  document.getElementById('accBalance').textContent = fmt(u.balance)+' so‘m';
+  document.getElementById('accSpins').textContent = (u.spins||0)+' ta';
+  const avatar = document.getElementById('accAvatar');
+  if(u.picture){ avatar.src = u.picture; avatar.style.display='block'; } else { avatar.style.display='none'; }
+  renderAccountCodes();
+  openModal('accountModal');
+});
+/* ---- Google Sign-In (kept from original site) ---- */
+function parseJwt(token){
+  try{
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g,'+').replace(/_/g,'/');
+    const jsonPayload = decodeURIComponent(atob(base64).split('').map(c=>'%'+('00'+c.charCodeAt(0).toString(16)).slice(-2)).join(''));
+    return JSON.parse(jsonPayload);
+  }catch(e){ return null; }
+}
+function handleGoogleCredential(response){
+  const payload = parseJwt(response.credential);
+  if(!payload){ toast('Google orqali kirishda xatolik yuz berdi', true); return; }
+  const s = getStore();
+  let user = s.users.find(u=>u.googleId===payload.sub);
+  let isNew = false;
+  if(!user){
+    user = {id:uid(), googleId:payload.sub, name:payload.name||'Foydalanuvchi', email:payload.email||'', picture:payload.picture||'', balance:0, spins:(s.settings.newUserSpins||0), spendSinceSpin:0};
+    s.users.push(user); isNew = true;
+  } else { user.name = payload.name || user.name; user.picture = payload.picture || user.picture; }
+  s.currentUserId = user.id; setStore(s); closeModal('loginModal'); renderBalance();
+  toast(isNew ? `Xush kelibsiz, ${user.name}! Sizga ${user.spins} ta bepul spin berildi 🎡` : `Xush kelibsiz, ${user.name}!`);
+}
+function initGoogleSignIn(){
+  const btnBox=document.getElementById('googleSignInBtn'), warnBox=document.getElementById('googleNotConfigured');
+  if(!btnBox) return;
+  if(!GOOGLE_CLIENT_ID || GOOGLE_CLIENT_ID.indexOf('YOUR_GOOGLE_CLIENT_ID')===0){ if(warnBox) warnBox.style.display='block'; return; }
+  if(typeof google==='undefined' || !google.accounts || !google.accounts.id){ setTimeout(initGoogleSignIn,400); return; }
+  try{ google.accounts.id.initialize({client_id:GOOGLE_CLIENT_ID,callback:handleGoogleCredential}); google.accounts.id.renderButton(btnBox,{theme:'filled_black',size:'large',shape:'pill',width:280}); if(warnBox) warnBox.style.display='none'; }
+  catch(e){ if(warnBox) warnBox.style.display='block'; }
+}
+document.getElementById('logoutBtn').addEventListener('click', ()=>{
+  const s = getStore(); s.currentUserId = null; setStore(s);
+  closeModal('accountModal'); renderBalance();
+});
+document.getElementById('openTopupBtn').addEventListener('click', ()=>{
+  closeModal('accountModal');
+  const s = getStore();
+  const box = document.getElementById('topupCardBox');
+  if(s.settings.cardNumber){
+    box.style.display='block';
+    document.getElementById('topupCardNumber').textContent = s.settings.cardNumber;
+    document.getElementById('topupCardHolder').textContent = s.settings.cardHolder || '';
+  } else { box.style.display='none'; }
+  openModal('topupModal');
+});
+
+let topupReceiptData = '';
+document.getElementById('topupReceipt').addEventListener('change', (e)=>{
+  const file = e.target.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ()=>{ topupReceiptData = reader.result; };
+  reader.readAsDataURL(file);
+});
+document.getElementById('topupSubmit').addEventListener('click', ()=>{
+  const u = currentUser();
+  if(!u){ toast('Avval hisobga kiring', true); return; }
+  const amount = parseInt(document.getElementById('topupAmount').value);
+  if(!amount || amount<=0){ toast('Summani to‘g‘ri kiriting', true); return; }
+  if(!topupReceiptData){ toast('To‘lov chekini yuklang', true); return; }
+  const s = getStore();
+  s.payments.push({id:uid(), userId:u.id, amount, receipt:topupReceiptData, status:'pending', createdAt:new Date().toISOString()});
+  setStore(s);
+  document.getElementById('topupAmount').value=''; document.getElementById('topupReceipt').value=''; topupReceiptData='';
+  closeModal('topupModal');
+  toast('Chek yuborildi. Admin tasdiqlashini kuting.');
+});
+
+/* ===================== KEYS MODALS (landing card + shop box) ===================== */
+document.getElementById('keysCardLanding').addEventListener('click', (e)=>{
+  // ignore clicks on nothing special; open modal directly (this card has no data-view nav)
+  openModal('keysModal');
+});
+document.getElementById('keysBoxShop').addEventListener('click', ()=> openModal('keysModal'));
+
+/* ===================== MOBILE MENU ===================== */
+document.getElementById('burgerBtn').addEventListener('click', ()=> openModal('mobileMenu'));
+
+/* ===================== PRODUCTS ===================== */
+function fileToDataUrl(input){
+  return new Promise((resolve)=>{
+    const file = input.files[0];
+    if(!file){ resolve(''); return; }
+    const reader = new FileReader();
+    reader.onload = ()=> resolve(reader.result);
+    reader.readAsDataURL(file);
+  });
+}
+
+function productCard(p, idx){
+  const delay = `style="animation-delay:${Math.min((idx||0)*0.07,0.6)}s"`;
+  const priceHtml = (p.price===null || p.price===undefined || p.price==='')
+    ? `<span class="prod-price na">Narx belgilanmagan</span>`
+    : `<span class="prod-price">${fmt(p.discount ? Math.round(p.price*(1-p.discount/100)) : p.price)} so‘m</span>${p.discount?`<span class="prod-old-price">${fmt(p.price)}</span>`:''}`;
+  const stockNum = (p.stock===null || p.stock===undefined || p.stock==='') ? null : Number(p.stock);
+  const stockHtml = stockNum===null ? '' : (stockNum<=0 ? `<div class="prod-stock zero">❌ TUGAGAN</div>` : `<div class="prod-stock">Qoldiq: ${stockNum} dona</div>`);
+  const media = p.video
+    ? `<video src="${p.video}" muted loop autoplay playsinline></video>`
+    : (p.image ? `<img src="${p.image}" alt="${p.name}">` : (p.category==='pm'?'🟣':'🟡'));
+  const noPrice = (p.price===null||p.price===undefined||p.price==='');
+  const disabled = (noPrice || stockNum===0) ? 'disabled' : '';
+  return `
+  <div class="prod-card" ${delay}>
+    <div class="prod-media">${p.discount?`<div class="prod-badge">-${p.discount}%</div>`:''}${media}</div>
+    <div class="prod-body">
+      <div class="prod-name">${p.name}</div>
+      ${p.description?`<div class="prod-desc">${p.description}</div>`:''}
+      <div class="prod-price-row">${priceHtml}</div>
+      ${stockHtml}
+      <button class="btn btn-gold btn-block prod-buy" data-buy="${p.id}" ${disabled}>${stockNum===0?'TUGAGAN':'SOTIB OLISH'}</button>
+    </div>
+  </div>`;
+}
+
+function renderShop(){
+  const s = getStore();
+  const pmProducts = s.products.filter(p=>p.category==='pm' && p.active);
+  const ucProducts = s.products.filter(p=>p.category==='uc' && p.active);
+
+  const pmGrid = document.getElementById('pmGrid');
+  document.getElementById('pmCount').textContent = pmProducts.length ? pmProducts.length+' ta mahsulot' : '';
+  pmGrid.innerHTML = pmProducts.length ? pmProducts.map((p,i)=>productCard(p,i)).join('') :
+    `<div class="empty-state"><div class="ic">📦</div><h3>PM hozircha mavjud emas</h3></div>`;
+
+  const ucGrid = document.getElementById('ucGrid');
+  document.getElementById('ucCount').textContent = ucProducts.length ? ucProducts.length+' ta mahsulot' : '';
+  ucGrid.innerHTML = ucProducts.length ? ucProducts.map((p,i)=>productCard(p,i)).join('') :
+    `<div class="empty-state"><div class="ic">📦</div><h3>UC hozircha mavjud emas</h3></div>`;
+
+  pmGrid.querySelectorAll('[data-buy]').forEach(btn=> btn.addEventListener('click', ()=> openBuyModal(btn.dataset.buy)));
+  ucGrid.querySelectorAll('[data-buy]').forEach(btn=> btn.addEventListener('click', ()=> openBuyModal(btn.dataset.buy)));
+}
+
+function openBuyModal(productId){
+  const s = getStore();
+  const p = s.products.find(x=>x.id===productId);
+  if(!p) return;
+  const u = currentUser();
+  document.getElementById('buyTitle').textContent = p.name;
+  const finalPrice = p.discount ? Math.round(p.price*(1-p.discount/100)) : p.price;
+  let body = `<div class="card-display"><div class="ch">Mahsulot narxi</div><div class="cn">${fmt(finalPrice)} so‘m</div></div>`;
+  if(!u){
+    body += `<p class="modal-note" style="margin-bottom:14px;">Xarid qilish uchun avval hisobga kiring.</p><button class="btn btn-gold btn-block" id="buyLoginBtn">HISOBGA KIRISH</button>`;
+  } else if(u.balance < finalPrice){
+    body += `<p class="modal-note" style="margin-bottom:14px;">Balansingizda mablag‘ yetarli emas. Joriy balans: <b style="color:var(--white)">${fmt(u.balance)} so‘m</b></p><button class="btn btn-gold btn-block" id="buyTopupBtn">HISOBNI TO‘LDIRISH</button>`;
+  } else {
+    body += `<p class="modal-note" style="margin-bottom:14px;">Joriy balansingiz: <b style="color:var(--white)">${fmt(u.balance)} so‘m</b>. Xaridni tasdiqlaysizmi?</p><button class="btn btn-gold btn-block" id="confirmBuyBtn">SOTIB OLISH</button>`;
+  }
+  document.getElementById('buyBody').innerHTML = body;
+  openModal('buyModal');
+
+  const loginBtn = document.getElementById('buyLoginBtn');
+  if(loginBtn) loginBtn.addEventListener('click', ()=>{ closeModal('buyModal'); openModal('loginModal'); });
+  const topupBtn = document.getElementById('buyTopupBtn');
+  if(topupBtn) topupBtn.addEventListener('click', ()=>{ closeModal('buyModal'); document.getElementById('openTopupBtn').click(); });
+  const confirmBtn = document.getElementById('confirmBuyBtn');
+  if(confirmBtn) confirmBtn.addEventListener('click', ()=>{
+    const store = getStore();
+    const prod = store.products.find(x=>x.id===productId);
+    const user = store.users.find(x=>x.id===store.currentUserId);
+    if(!prod || !user) return;
+    const price = prod.discount ? Math.round(prod.price*(1-prod.discount/100)) : prod.price;
+    if(prod.stock!==null && prod.stock!==undefined && prod.stock!==''){
+      if(Number(prod.stock)<=0){ toast('Mahsulot tugagan', true); closeModal('buyModal'); renderShop(); return; }
+      prod.stock = Number(prod.stock)-1;
+    }
+    user.balance -= price;
+    // Grant free bonus spins based on cumulative spend (transparent, no payment for the spin itself)
+    user.spendSinceSpin = (user.spendSinceSpin||0) + price;
+    const threshold = Number(store.settings.spendThreshold)||0;
+    let earnedSpins = 0;
+    if(threshold > 0){
+      while(user.spendSinceSpin >= threshold){
+        user.spins = (user.spins||0) + 1;
+        user.spendSinceSpin -= threshold;
+        earnedSpins++;
+      }
+    }
+    setStore(store);
+    closeModal('buyModal');
+    renderBalance(); renderShop();
+    toast(earnedSpins>0 ? `Xarid amalga oshdi! Sizga ${earnedSpins} ta bepul spin qo‘shildi 🎡` : 'Xarid muvaffaqiyatli amalga oshirildi!');
+  });
+}
+
+/* ===================== ADMIN ===================== */
+document.getElementById('adminNavBtn').addEventListener('click', ()=> openModal('adminLoginModal'));
+document.getElementById('adminNavBtnMobile').addEventListener('click', ()=>{ closeModal('mobileMenu'); openModal('adminLoginModal'); });
+document.getElementById('adminLoginSubmit').addEventListener('click', ()=>{
+  const s = getStore();
+  const pass = document.getElementById('adminPassword').value;
+  if(pass === s.settings.adminPassword){
+    document.getElementById('adminPassword').value='';
+    closeModal('adminLoginModal');
+    openAdmin();
+  } else { toast('Parol noto‘g‘ri', true); }
+});
+document.getElementById('adminCloseBtn').addEventListener('click', ()=>{ document.getElementById('adminOverlay').classList.remove('open'); });
+function openAdmin(){
+  document.getElementById('adminOverlay').classList.add('open');
+  renderAdminUsers(); renderAdminPayments(); renderAdminProducts('pm'); renderAdminProducts('uc'); loadSettingsForm(); loadKeysSettingsForm(); loadBonusAdmin(); renderCaseAdmin();
+}
+document.querySelectorAll('.admin-tab').forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.admin-panel').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('tab-'+tab.dataset.tab).classList.add('active');
+  });
+});
+
+function renderAdminUsers(){
+  const s = getStore();
+  const body = document.getElementById('usersTableBody');
+  if(!s.users.length){ body.innerHTML = `<tr class="empty-row"><td colspan="4">Hozircha foydalanuvchilar yo‘q</td></tr>`; return; }
+  body.innerHTML = s.users.map(u=>`<tr><td>${u.name}</td><td>${u.email||'—'}</td><td>${fmt(u.balance)} so‘m</td><td>${u.spins||0} ta</td></tr>`).join('');
+}
+
+function renderAdminPayments(){
+  const s = getStore();
+  const body = document.getElementById('paymentsTableBody');
+  if(!s.payments.length){ body.innerHTML = `<tr class="empty-row"><td colspan="6">Hozircha to‘lovlar yo‘q</td></tr>`; return; }
+  const sorted = [...s.payments].sort((a,b)=> new Date(b.createdAt)-new Date(a.createdAt));
+  body.innerHTML = sorted.map(p=>{
+    const user = s.users.find(u=>u.id===p.userId);
+    const date = new Date(p.createdAt).toLocaleString('ru-RU');
+    let actions = p.status==='pending'
+      ? `<div class="row-actions"><button class="btn btn-sm btn-gold" data-approve="${p.id}">Tasdiqlash</button><button class="btn btn-sm btn-ghost" data-reject="${p.id}">Rad etish</button></div>`
+      : '—';
+    return `<tr>
+      <td><img class="receipt-thumb" src="${p.receipt}" data-preview="${p.receipt}"></td>
+      <td>${user?user.name:'—'}<br><span style="color:var(--text-dim-2);font-size:12px;">${user?user.phone:''}</span></td>
+      <td>${fmt(p.amount)} so‘m</td>
+      <td>${date}</td>
+      <td><span class="pill ${p.status}">${p.status==='pending'?'Kutilmoqda':p.status==='approved'?'Tasdiqlangan':'Rad etilgan'}</span></td>
+      <td>${actions}</td>
+    </tr>`;
+  }).join('');
+
+  body.querySelectorAll('[data-preview]').forEach(img=>{
+    img.addEventListener('click', ()=>{ document.getElementById('receiptPreviewImg').src = img.dataset.preview; openModal('receiptPreviewModal'); });
+  });
+  body.querySelectorAll('[data-approve]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const store = getStore();
+      const pay = store.payments.find(x=>x.id===btn.dataset.approve);
+      const user = store.users.find(x=>x.id===pay.userId);
+      if(pay && user && pay.status==='pending'){
+        pay.status='approved'; user.balance += pay.amount;
+        setStore(store); renderAdminPayments(); renderAdminUsers();
+        toast('To‘lov tasdiqlandi, balans yangilandi');
+      }
+    });
+  });
+  body.querySelectorAll('[data-reject]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const store = getStore();
+      const pay = store.payments.find(x=>x.id===btn.dataset.reject);
+      if(pay && pay.status==='pending'){ pay.status='rejected'; setStore(store); renderAdminPayments(); toast('To‘lov rad etildi'); }
+    });
+  });
+}
+
+function renderAdminProducts(cat){
+  const s = getStore();
+  const list = s.products.filter(p=>p.category===cat);
+  const body = document.getElementById(cat+'TableBody');
+  if(!list.length){ body.innerHTML = `<tr class="empty-row"><td colspan="6">Hozircha ${cat.toUpperCase()} mahsulot yo‘q</td></tr>`; return; }
+  body.innerHTML = list.map(p=>{
+    const nameCell = cat==='uc' ? `${p.ucAmount} UC` : p.name;
+    const priceCell = (p.price===null||p.price===undefined||p.price==='') ? 'Narx belgilanmagan' : fmt(p.price)+' so‘m';
+    const stockCell = (p.stock===null||p.stock===undefined||p.stock==='') ? '—' : p.stock;
+    const media = p.image ? `<img class="receipt-thumb" src="${p.image}">` : (p.video?'🎥':'📦');
+    return `<tr>
+      <td>${media}</td><td>${nameCell}</td><td>${priceCell}</td><td>${stockCell}</td>
+      <td><span class="pill ${p.active?'active':'inactive'}">${p.active?'Faol':'Nofaol'}</span></td>
+      <td><div class="row-actions">
+        <button class="btn btn-sm btn-ghost" data-edit="${p.id}" data-cat="${cat}">Tahrirlash</button>
+        <button class="btn btn-sm btn-ghost" data-del="${p.id}" data-cat="${cat}" style="color:var(--red);">O‘chirish</button>
+      </div></td>
+    </tr>`;
+  }).join('');
+
+  body.querySelectorAll('[data-del]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const store = getStore();
+      store.products = store.products.filter(p=>p.id!==btn.dataset.del);
+      setStore(store);
+      renderAdminProducts(cat); renderShop();
+      toast('Mahsulot o‘chirildi');
+    });
+  });
+  body.querySelectorAll('[data-edit]').forEach(btn=>{ btn.addEventListener('click', ()=> loadProductIntoForm(btn.dataset.edit, cat)); });
+}
+
+function loadProductIntoForm(id, cat){
+  const s = getStore();
+  const p = s.products.find(x=>x.id===id);
+  if(!p) return;
+  if(cat==='pm'){
+    document.getElementById('pmFormTitle').textContent = 'PM mahsulotni tahrirlash';
+    document.getElementById('pmEditId').value = p.id;
+    document.getElementById('pmName').value = p.name || '';
+    document.getElementById('pmPrice').value = p.price ?? '';
+    document.getElementById('pmStock').value = p.stock ?? '';
+    document.getElementById('pmDiscount').value = p.discount ?? '';
+    document.getElementById('pmDesc').value = p.description || '';
+    document.getElementById('pmActive').checked = !!p.active;
+    document.getElementById('pmCancelEdit').style.display='inline-flex';
+  } else {
+    document.getElementById('ucFormTitle').textContent = 'UC mahsulotni tahrirlash';
+    document.getElementById('ucEditId').value = p.id;
+    document.getElementById('ucAmount').value = p.ucAmount;
+    document.getElementById('ucPrice').value = p.price ?? '';
+    document.getElementById('ucStock').value = p.stock ?? '';
+    document.getElementById('ucDiscount').value = p.discount ?? '';
+    document.getElementById('ucDesc').value = p.description || '';
+    document.getElementById('ucActive').checked = !!p.active;
+    document.getElementById('ucCancelEdit').style.display='inline-flex';
+  }
+  document.querySelector(`[data-tab="${cat}"]`).click();
+}
+
+document.getElementById('pmCancelEdit').addEventListener('click', ()=> resetPmForm());
+document.getElementById('ucCancelEdit').addEventListener('click', ()=> resetUcForm());
+function resetPmForm(){
+  document.getElementById('pmFormTitle').textContent='PM mahsulot qo‘shish';
+  document.getElementById('pmEditId').value=''; document.getElementById('pmName').value='';
+  document.getElementById('pmPrice').value=''; document.getElementById('pmStock').value='';
+  document.getElementById('pmDiscount').value=''; document.getElementById('pmDesc').value='';
+  document.getElementById('pmImage').value=''; document.getElementById('pmVideo').value='';
+  document.getElementById('pmActive').checked=true; document.getElementById('pmCancelEdit').style.display='none';
+}
+function resetUcForm(){
+  document.getElementById('ucFormTitle').textContent='UC mahsulot qo‘shish';
+  document.getElementById('ucEditId').value=''; document.getElementById('ucPrice').value='';
+  document.getElementById('ucStock').value=''; document.getElementById('ucDiscount').value='';
+  document.getElementById('ucDesc').value=''; document.getElementById('ucImage').value='';
+  document.getElementById('ucVideo').value=''; document.getElementById('ucActive').checked=true;
+  document.getElementById('ucCancelEdit').style.display='none';
+}
+
+document.getElementById('pmSaveBtn').addEventListener('click', async ()=>{
+  const name = document.getElementById('pmName').value.trim();
+  if(!name){ toast('Mahsulot nomini kiriting', true); return; }
+  const s = getStore();
+  const editId = document.getElementById('pmEditId').value;
+  const priceVal = document.getElementById('pmPrice').value;
+  const stockVal = document.getElementById('pmStock').value;
+  const discVal = document.getElementById('pmDiscount').value;
+  const imgFile = document.getElementById('pmImage');
+  const vidFile = document.getElementById('pmVideo');
+  const image = imgFile.files[0] ? await fileToDataUrl(imgFile) : null;
+  const video = vidFile.files[0] ? await fileToDataUrl(vidFile) : null;
+
+  if(editId){
+    const p = s.products.find(x=>x.id===editId);
+    p.name = name;
+    p.price = priceVal===''?null:Number(priceVal);
+    p.stock = stockVal===''?null:Number(stockVal);
+    p.discount = discVal===''?null:Number(discVal);
+    p.description = document.getElementById('pmDesc').value.trim();
+    p.active = document.getElementById('pmActive').checked;
+    if(image) p.image = image;
+    if(video) p.video = video;
+  } else {
+    s.products.push({
+      id:uid(), category:'pm', name,
+      price: priceVal===''?null:Number(priceVal),
+      stock: stockVal===''?null:Number(stockVal),
+      discount: discVal===''?null:Number(discVal),
+      description: document.getElementById('pmDesc').value.trim(),
+      image: image || '', video: video || '',
+      active: document.getElementById('pmActive').checked
+    });
+  }
+  setStore(s);
+  resetPmForm();
+  renderAdminProducts('pm'); renderShop();
+  toast('PM mahsulot saqlandi');
+});
+
+document.getElementById('ucSaveBtn').addEventListener('click', async ()=>{
+  const amount = document.getElementById('ucAmount').value;
+  const s = getStore();
+  const editId = document.getElementById('ucEditId').value;
+  const priceVal = document.getElementById('ucPrice').value;
+  const stockVal = document.getElementById('ucStock').value;
+  const discVal = document.getElementById('ucDiscount').value;
+  const imgFile = document.getElementById('ucImage');
+  const vidFile = document.getElementById('ucVideo');
+  const image = imgFile.files[0] ? await fileToDataUrl(imgFile) : null;
+  const video = vidFile.files[0] ? await fileToDataUrl(vidFile) : null;
+
+  if(editId){
+    const p = s.products.find(x=>x.id===editId);
+    p.ucAmount = Number(amount); p.name = amount+' UC';
+    p.price = priceVal===''?null:Number(priceVal);
+    p.stock = stockVal===''?null:Number(stockVal);
+    p.discount = discVal===''?null:Number(discVal);
+    p.description = document.getElementById('ucDesc').value.trim();
+    p.active = document.getElementById('ucActive').checked;
+    if(image) p.image = image;
+    if(video) p.video = video;
+  } else {
+    s.products.push({
+      id:uid(), category:'uc', ucAmount:Number(amount), name:amount+' UC',
+      price: priceVal===''?null:Number(priceVal),
+      stock: stockVal===''?null:Number(stockVal),
+      discount: discVal===''?null:Number(discVal),
+      description: document.getElementById('ucDesc').value.trim(),
+      image: image || '', video: video || '',
+      active: document.getElementById('ucActive').checked
+    });
+  }
+  setStore(s);
+  resetUcForm();
+  renderAdminProducts('uc'); renderShop();
+  toast('UC mahsulot saqlandi');
+});
+
+function loadSettingsForm(){
+  const s = getStore();
+  document.getElementById('setCardNumber').value = s.settings.cardNumber || '';
+  document.getElementById('setCardHolder').value = s.settings.cardHolder || '';
+}
+document.getElementById('setCardSave').addEventListener('click', ()=>{
+  const s = getStore();
+  s.settings.cardNumber = document.getElementById('setCardNumber').value.trim();
+  s.settings.cardHolder = document.getElementById('setCardHolder').value.trim();
+  setStore(s);
+  toast('Karta ma’lumotlari saqlandi');
+});
+document.getElementById('setBrandSave').addEventListener('click', async ()=>{
+  const s = getStore();
+  const logoFile = document.getElementById('setLogo');
+  const bgFile = document.getElementById('setBg');
+  if(logoFile.files[0]) s.settings.logoImage = await fileToDataUrl(logoFile);
+  if(bgFile.files[0]) s.settings.heroImage = await fileToDataUrl(bgFile);
+  setStore(s);
+  applyBranding();
+  toast('Brend rasmlari saqlandi');
+});
+document.getElementById('setPasswordSave').addEventListener('click', ()=>{
+  const val = document.getElementById('setNewPassword').value.trim();
+  if(!val){ toast('Yangi parolni kiriting', true); return; }
+  const s = getStore();
+  s.settings.adminPassword = val;
+  setStore(s);
+  document.getElementById('setNewPassword').value='';
+  toast('Admin paroli yangilandi');
+});
+
+/* ===================== SCROLL REVEAL & RIPPLE ===================== */
+const revealObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){ entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }
+  });
+}, {threshold:0.12, rootMargin:'0px 0px -30px 0px'});
+function observeReveals(){
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el=>{
+    const style = window.getComputedStyle(el);
+    if(style.display !== 'none') revealObserver.observe(el);
+  });
+}
+document.addEventListener('click', (e)=>{
+  const btn = e.target.closest('.btn');
+  if(!btn) return;
+  const rect = btn.getBoundingClientRect();
+  const circle = document.createElement('span');
+  const size = Math.max(rect.width, rect.height);
+  circle.className = 'ripple';
+  circle.style.width = circle.style.height = size+'px';
+  circle.style.left = (e.clientX - rect.left - size/2)+'px';
+  circle.style.top = (e.clientY - rect.top - size/2)+'px';
+  btn.appendChild(circle);
+  setTimeout(()=>circle.remove(), 650);
+});
+
+/* ===================== KEYS CONTENT (title/image, admin-managed) ===================== */
+function renderKeysContent(){
+  const s = getStore();
+  const title = s.settings.keysTitle || 'Tez orada ishga tushadi';
+  const img = s.settings.keysImage || '';
+  document.getElementById('keysBoxTitle').textContent = title;
+  document.getElementById('keysModalTagText').textContent = title.toUpperCase();
+  const boxIcon = document.getElementById('keysBoxIcon');
+  const modalIcon = document.getElementById('keysModalIconBox');
+  if(img){
+    boxIcon.innerHTML = `<img src="${img}" style="width:64px;height:64px;object-fit:cover;border-radius:14px;">`;
+    modalIcon.innerHTML = `<img src="${img}" style="width:100%;height:100%;object-fit:cover;border-radius:14px;">`;
+  } else {
+    boxIcon.textContent = '🔐';
+    modalIcon.textContent = '🔐';
+  }
+}
+document.getElementById('setKeysSave').addEventListener('click', async ()=>{
+  const s = getStore();
+  const title = document.getElementById('setKeysTitle').value.trim();
+  const imgFile = document.getElementById('setKeysImage');
+  s.settings.keysTitle = title || 'Tez orada ishga tushadi';
+  if(imgFile.files[0]) s.settings.keysImage = await fileToDataUrl(imgFile);
+  setStore(s);
+  renderKeysContent();
+  toast('KEYS sozlamalari saqlandi');
+});
+document.getElementById('setKeysImageRemove').addEventListener('click', ()=>{
+  const s = getStore();
+  s.settings.keysImage = '';
+  setStore(s);
+  document.getElementById('setKeysImage').value='';
+  renderKeysContent();
+  toast('Keys rasmi o‘chirildi');
+});
+function loadKeysSettingsForm(){
+  const s = getStore();
+  document.getElementById('setKeysTitle').value = s.settings.keysTitle || 'Tez orada ishga tushadi';
+}
+
+/* ===================== BONUS SPIN SYSTEM (free, no payment for spins) ===================== */
+const SPIN_COLORS = ['#8d4dff','#ffc400','#3ddc84','#ff5470','#5b8dff','#ff9d4d','#c9b3ff','#4de0ff'];
+
+function activePrizes(){
+  return getStore().prizes.filter(p=>p.active);
+}
+
+// Account modal -> open spin
+document.getElementById('openSpinBtn').addEventListener('click', ()=>{
+  const u = currentUser();
+  if(!u) return;
+  if((u.spins||0) <= 0){ toast('Sizda bepul spin yo‘q. Xarid qiling yoki keyinroq urinib ko‘ring.', true); return; }
+  const prizes = activePrizes();
+  if(!prizes.length){ toast('Hozircha bonus mukofotlar mavjud emas', true); return; }
+  closeModal('accountModal');
+  renderSpinWheel();
+  document.getElementById('spinStatusText').textContent = `Sizda ${u.spins} ta bepul spin bor`;
+  openModal('spinModal');
+});
+
+function renderSpinWheel(){
+  const prizes = activePrizes();
+  const wheel = document.getElementById('spinWheel');
+  const oddsList = document.getElementById('spinOddsList');
+  if(!prizes.length){
+    wheel.style.background = 'var(--panel-2)';
+    oddsList.innerHTML = `<div style="color:var(--text-dim-2);font-size:13px;">Hozircha mukofotlar mavjud emas</div>`;
+    return;
+  }
+  const total = prizes.reduce((sum,p)=>sum+Number(p.probability||0),0) || 1;
+  let acc = 0;
+  const gradientParts = [];
+  prizes.forEach((p,i)=>{
+    const pct = Number(p.probability||0)/total*100;
+    const start = acc; const end = acc+pct;
+    gradientParts.push(`${SPIN_COLORS[i%SPIN_COLORS.length]} ${start}% ${end}%`);
+    acc = end;
+  });
+  wheel.style.background = `conic-gradient(${gradientParts.join(',')})`;
+  wheel.style.transform = 'rotate(0deg)';
+  oddsList.innerHTML = prizes.map((p,i)=>{
+    const pct = (Number(p.probability||0)/total*100).toFixed(1);
+    return `<div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-dim);">
+      <span style="width:10px;height:10px;border-radius:3px;background:${SPIN_COLORS[i%SPIN_COLORS.length]};flex-shrink:0;"></span>
+      <span style="flex:1;">${p.name}</span><span style="color:var(--white);font-weight:600;">${pct}%</span>
+    </div>`;
+  }).join('');
+}
+
+let spinInProgress = false;
+document.getElementById('spinActionBtn').addEventListener('click', ()=>{
+  if(spinInProgress) return;
+  const u = currentUser();
+  if(!u || (u.spins||0)<=0){ toast('Sizda bepul spin yo‘q', true); return; }
+  const prizes = activePrizes();
+  if(!prizes.length){ toast('Mukofotlar mavjud emas', true); return; }
+
+  const total = prizes.reduce((sum,p)=>sum+Number(p.probability||0),0) || 1;
+  let acc = 0;
+  const segments = prizes.map(p=>{
+    const pct = Number(p.probability||0)/total*100;
+    const seg = {prize:p, start:acc, end:acc+pct};
+    acc += pct;
+    return seg;
+  });
+  // Weighted random pick
+  const r = Math.random()*100;
+  const winner = segments.find(s=> r>=s.start && r<s.end) || segments[segments.length-1];
+  const segMid = (winner.start+winner.end)/2;
+  // Wheel's 0deg is at top (12 o'clock) per conic-gradient default start; pointer is fixed at top.
+  // Rotate so the winning segment's middle lands under the pointer, plus several full spins for effect.
+  const extraSpins = 5 + Math.floor(Math.random()*2);
+  const targetRotation = extraSpins*360 + (360 - segMid*3.6);
+
+  spinInProgress = true;
+  document.getElementById('spinActionBtn').disabled = true;
+  document.getElementById('spinStatusText').textContent = 'Aylanmoqda...';
+  const wheel = document.getElementById('spinWheel');
+  wheel.style.transform = `rotate(${targetRotation}deg)`;
+
+  setTimeout(()=>{
+    const store = getStore();
+    const user = store.users.find(x=>x.id===store.currentUserId);
+    if(!user){ spinInProgress=false; document.getElementById('spinActionBtn').disabled=false; return; }
+    user.spins = Math.max(0,(user.spins||1)-1);
+    user.balance += Number(winner.prize.amount)||0;
+    store.spinHistory.push({id:uid(), userId:user.id, prizeName:winner.prize.name, amount:Number(winner.prize.amount)||0, createdAt:new Date().toISOString()});
+    setStore(store);
+    renderBalance();
+    document.getElementById('spinStatusText').innerHTML = `🎉 Siz yutdingiz: <b style="color:var(--gold)">${winner.prize.name}</b>! Balansingizga ${fmt(winner.prize.amount)} so‘m qo‘shildi.`;
+    toast(`Tabriklaymiz! ${winner.prize.name} yutib oldingiz 🎉`);
+    spinInProgress = false;
+    document.getElementById('spinActionBtn').disabled = (user.spins<=0);
+    if(user.spins<=0) document.getElementById('spinActionBtn').textContent = 'SPINLAR TUGADI';
+  }, 4600);
+});
+
+/* ---- Admin: bonus rules + prize CRUD + spin history ---- */
+function loadBonusAdmin(){
+  const s = getStore();
+  document.getElementById('setNewUserSpins').value = s.settings.newUserSpins ?? 1;
+  document.getElementById('setSpendThreshold').value = s.settings.spendThreshold ?? 100000;
+  renderPrizeTable();
+  renderSpinHistoryAdmin();
+}
+document.getElementById('setBonusRulesSave').addEventListener('click', ()=>{
+  const s = getStore();
+  s.settings.newUserSpins = Number(document.getElementById('setNewUserSpins').value)||0;
+  s.settings.spendThreshold = Number(document.getElementById('setSpendThreshold').value)||0;
+  setStore(s);
+  toast('Bonus qoidalari saqlandi');
+});
+
+function renderPrizeTable(){
+  const s = getStore();
+  const body = document.getElementById('prizeTableBody');
+  if(!s.prizes.length){ body.innerHTML = `<tr class="empty-row"><td colspan="5">Hozircha mukofotlar yo‘q</td></tr>`; document.getElementById('prizeTotalPct').textContent=''; return; }
+  const totalPct = s.prizes.filter(p=>p.active).reduce((sum,p)=>sum+Number(p.probability||0),0);
+  document.getElementById('prizeTotalPct').textContent = `(faol mukofotlar jami: ${totalPct}%)`;
+  body.innerHTML = s.prizes.map(p=>`
+    <tr>
+      <td>${p.name}</td>
+      <td>${fmt(p.amount)} so‘m</td>
+      <td>${p.probability}%</td>
+      <td><span class="pill ${p.active?'active':'inactive'}">${p.active?'Faol':'Nofaol'}</span></td>
+      <td><div class="row-actions">
+        <button class="btn btn-sm btn-ghost" data-prize-edit="${p.id}">Tahrirlash</button>
+        <button class="btn btn-sm btn-ghost" data-prize-del="${p.id}" style="color:var(--red);">O‘chirish</button>
+      </div></td>
+    </tr>`).join('');
+  body.querySelectorAll('[data-prize-del]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const store = getStore();
+      store.prizes = store.prizes.filter(p=>p.id!==btn.dataset.prizeDel);
+      setStore(store); renderPrizeTable();
+      toast('Mukofot o‘chirildi');
+    });
+  });
+  body.querySelectorAll('[data-prize-edit]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const store = getStore();
+      const p = store.prizes.find(x=>x.id===btn.dataset.prizeEdit);
+      if(!p) return;
+      document.getElementById('prizeFormTitle').textContent = 'Mukofotni tahrirlash';
+      document.getElementById('prizeEditId').value = p.id;
+      document.getElementById('prizeName').value = p.name;
+      document.getElementById('prizeAmount').value = p.amount;
+      document.getElementById('prizeProbability').value = p.probability;
+      document.getElementById('prizeActive').checked = !!p.active;
+      document.getElementById('prizeCancelEdit').style.display='inline-flex';
+    });
+  });
+}
+document.getElementById('prizeCancelEdit').addEventListener('click', ()=> resetPrizeForm());
+function resetPrizeForm(){
+  document.getElementById('prizeFormTitle').textContent = 'Bonus mukofot qo‘shish';
+  document.getElementById('prizeEditId').value='';
+  document.getElementById('prizeName').value='';
+  document.getElementById('prizeAmount').value='';
+  document.getElementById('prizeProbability').value='';
+  document.getElementById('prizeActive').checked=true;
+  document.getElementById('prizeCancelEdit').style.display='none';
+}
+document.getElementById('prizeSaveBtn').addEventListener('click', ()=>{
+  const name = document.getElementById('prizeName').value.trim();
+  const amount = document.getElementById('prizeAmount').value;
+  const probability = document.getElementById('prizeProbability').value;
+  if(!name || amount===''  || probability===''){ toast('Barcha maydonlarni to‘ldiring', true); return; }
+  const s = getStore();
+  const editId = document.getElementById('prizeEditId').value;
+  if(editId){
+    const p = s.prizes.find(x=>x.id===editId);
+    p.name=name; p.amount=Number(amount); p.probability=Number(probability); p.active=document.getElementById('prizeActive').checked;
+  } else {
+    s.prizes.push({id:uid(), name, amount:Number(amount), probability:Number(probability), active:document.getElementById('prizeActive').checked});
+  }
+  setStore(s);
+  resetPrizeForm();
+  renderPrizeTable();
+  toast('Mukofot saqlandi');
+});
+
+function renderSpinHistoryAdmin(){
+  const s = getStore();
+  const body = document.getElementById('spinHistoryBody');
+  if(!s.spinHistory.length){ body.innerHTML = `<tr class="empty-row"><td colspan="3">Hozircha spinlar yo‘q</td></tr>`; return; }
+  const sorted = [...s.spinHistory].sort((a,b)=> new Date(b.createdAt)-new Date(a.createdAt)).slice(0,50);
+  body.innerHTML = sorted.map(h=>{
+    const user = s.users.find(u=>u.id===h.userId);
+    return `<tr><td>${user?user.name:'—'}</td><td>${h.prizeName} (+${fmt(h.amount)} so‘m)</td><td>${new Date(h.createdAt).toLocaleString('ru-RU')}</td></tr>`;
+  }).join('');
+}
+
+/* ===================== ADMIN: CASE ITEMS + PROMO CODES ===================== */
+function populateCaseCodeItemSelect(){
+  const sel = document.getElementById('caseCodeItem');
+  const items = getCaseItems();
+  sel.innerHTML = items.map(it=>`<option value="${it.id}">${it.name} (${CASE_TIER_LABEL[it.tier]})</option>`).join('');
+}
+function renderCaseItemTable(){
+  const items = getCaseItems();
+  const codes = getCaseCodes();
+  const body = document.getElementById('caseItemTableBody');
+  const totalPct = items.reduce((a,b)=>a+Number(b.chance||0),0);
+  document.getElementById('caseItemTotalPct').textContent = `Jami: ${totalPct}%`;
+  if(!items.length){ body.innerHTML = `<tr class="empty-row"><td colspan="6">Hozircha buyum yo‘q</td></tr>`; return; }
+  body.innerHTML = items.map(it=>{
+    const avail = codes.filter(c=>c.itemId===it.id && c.status==='available').length;
+    return `<tr>
+      <td>${it.name}</td><td>${CASE_TYPE_LABEL[it.type]||it.type}</td><td>${CASE_TIER_LABEL[it.tier]||it.tier}</td><td>${it.chance}%</td>
+      <td>${avail} ta</td>
+      <td style="display:flex;gap:6px;">
+        <button class="btn btn-ghost btn-sm" data-edit-case-item="${it.id}">Tahrirlash</button>
+        <button class="btn btn-ghost btn-sm" data-del-case-item="${it.id}">O‘chirish</button>
+      </td>
+    </tr>`;
+  }).join('');
+  body.querySelectorAll('[data-edit-case-item]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const it = getCaseItems().find(x=>x.id===btn.dataset.editCaseItem);
+      if(!it) return;
+      document.getElementById('caseItemFormTitle').textContent = 'Buyumni tahrirlash';
+      document.getElementById('caseItemEditId').value = it.id;
+      document.getElementById('caseItemName').value = it.name;
+      document.getElementById('caseItemType').value = it.type;
+      document.getElementById('caseItemTier').value = it.tier;
+      document.getElementById('caseItemChance').value = it.chance;
+      document.getElementById('caseItemIcon').value = it.icon;
+      document.getElementById('caseItemCancelEdit').style.display='inline-flex';
+    });
+  });
+  body.querySelectorAll('[data-del-case-item]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const id = btn.dataset.delCaseItem;
+      const hasCodes = getCaseCodes().some(c=>c.itemId===id);
+      if(hasCodes && !confirm('Bu buyumga bog‘langan promo kodlar bor. Baribir o‘chirilsinmi?')) return;
+      setCaseItems(getCaseItems().filter(x=>x.id!==id));
+      renderCaseAdmin();
+      toast('Buyum o‘chirildi');
+    });
+  });
+}
+document.getElementById('caseItemCancelEdit').addEventListener('click', ()=> resetCaseItemForm());
+function resetCaseItemForm(){
+  document.getElementById('caseItemFormTitle').textContent = "Case sovg'asi (buyum) qo‘shish";
+  document.getElementById('caseItemEditId').value='';
+  document.getElementById('caseItemName').value='';
+  document.getElementById('caseItemChance').value='';
+  document.getElementById('caseItemType').value='frame';
+  document.getElementById('caseItemTier').value='common';
+  document.getElementById('caseItemIcon').value='frame_ring';
+  document.getElementById('caseItemCancelEdit').style.display='none';
+}
+document.getElementById('caseItemSaveBtn').addEventListener('click', ()=>{
+  const name = document.getElementById('caseItemName').value.trim();
+  const type = document.getElementById('caseItemType').value;
+  const tier = document.getElementById('caseItemTier').value;
+  const chance = document.getElementById('caseItemChance').value;
+  const icon = document.getElementById('caseItemIcon').value;
+  if(!name || chance===''){ toast('Barcha maydonlarni to‘ldiring', true); return; }
+  const items = getCaseItems().slice();
+  const editId = document.getElementById('caseItemEditId').value;
+  if(editId){
+    const idx = items.findIndex(x=>x.id===editId);
+    if(idx>-1) items[idx] = {...items[idx], name, type, tier, chance:Number(chance), icon};
+  } else {
+    items.push({id:uid(), name, type, tier, chance:Number(chance), icon});
+  }
+  setCaseItems(items);
+  resetCaseItemForm();
+  renderCaseAdmin();
+  toast('Buyum saqlandi');
+});
+
+function renderCaseCodeTable(){
+  const codes = getCaseCodes();
+  const items = getCaseItems();
+  const s = getStore();
+  const body = document.getElementById('caseCodeTableBody');
+  if(!codes.length){ body.innerHTML = `<tr class="empty-row"><td colspan="6">Hozircha promo kod yo‘q</td></tr>`; return; }
+  const sorted = [...codes].sort((a,b)=> new Date(b.createdAt||0)-new Date(a.createdAt||0));
+  body.innerHTML = sorted.map(c=>{
+    const item = items.find(i=>i.id===c.itemId);
+    const holderId = c.redeemedBy || c.wonBy;
+    const holder = holderId ? s.users.find(u=>u.id===holderId) : null;
+    let statusLbl = 'Faol';
+    if(c.status==='won') statusLbl = 'Yutildi (tasdiqlanmagan)';
+    if(c.status==='redeemed') statusLbl = 'Ishlatilgan';
+    const canDelete = c.status==='available';
+    return `<tr>
+      <td>${c.code}</td><td>${item?item.name:'—'}</td><td>${statusLbl}</td><td>${holder?holder.name:'—'}</td>
+      <td>${c.redeemedAt? new Date(c.redeemedAt).toLocaleString('ru-RU') : (c.wonAt? new Date(c.wonAt).toLocaleString('ru-RU') : '—')}</td>
+      <td>${canDelete? `<button class="btn btn-ghost btn-sm" data-del-code="${c.id}">O‘chirish</button>` : ''}</td>
+    </tr>`;
+  }).join('');
+  body.querySelectorAll('[data-del-code]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const s = getStore();
+      s.caseCodes = s.caseCodes.filter(c=>c.id!==btn.dataset.delCode);
+      setStore(s);
+      renderCaseAdmin();
+      toast('Kod o‘chirildi');
+    });
+  });
+}
+document.getElementById('caseCodeGenBtn').addEventListener('click', ()=>{
+  document.getElementById('caseCodeValue').value = genPromoCode();
+});
+document.getElementById('caseCodeSaveBtn').addEventListener('click', ()=>{
+  const itemId = document.getElementById('caseCodeItem').value;
+  let code = document.getElementById('caseCodeValue').value.trim().toUpperCase();
+  if(!itemId){ toast('Avval kamida bitta buyum qo‘shing', true); return; }
+  if(!code){ toast('Kodni kiriting yoki tasodifiy kod yarating', true); return; }
+  const s = getStore();
+  if(s.caseCodes.some(c=>c.code===code)){ toast('Bu kod allaqachon mavjud', true); return; }
+  s.caseCodes.push({ id:uid(), itemId, code, status:'available', wonBy:null, wonAt:null, redeemedBy:null, redeemedAt:null, createdAt:new Date().toISOString() });
+  setStore(s);
+  document.getElementById('caseCodeValue').value='';
+  renderCaseAdmin();
+  toast('Promo kod qo‘shildi');
+});
+function renderCaseAdmin(){
+  populateCaseCodeItemSelect();
+  renderCaseItemTable();
+  renderCaseCodeTable();
+}
+
+/* ===================== PROMO CODE REDEMPTION (user-facing) ===================== */
+function renderAccountCodes(){
+  const u = currentUser();
+  const box = document.getElementById('accCodesList');
+  if(!box) return;
+  if(!u){ box.innerHTML=''; return; }
+  const items = getCaseItems();
+  const mine = getCaseCodes().filter(c=>c.wonBy===u.id || c.redeemedBy===u.id)
+    .sort((a,b)=> new Date(b.wonAt||b.redeemedAt||0)-new Date(a.wonAt||a.redeemedAt||0));
+  if(!mine.length){
+    box.innerHTML = `<div class="ch" style="color:var(--text-dim-2);">Hozircha yutgan kodingiz yo‘q.</div>`;
+    return;
+  }
+  box.innerHTML = mine.map(c=>{
+    const item = items.find(i=>i.id===c.itemId);
+    const used = c.status==='redeemed';
+    return `<div class="card-display" style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+      <div>
+        <div class="ch">${item?item.name:'Sovg‘a'}</div>
+        <div class="cn" style="font-size:14px;">${c.code}</div>
+        <div style="font-size:11px;color:${used?'var(--text-dim-2)':'var(--gold)'}">${used?'Ishlatilgan':'Yutilgan — PROMOda ishlatish mumkin'}</div>
+      </div>
+      <button class="btn btn-outline btn-sm" data-copy-code="${c.code}">Nusxalash</button>
+    </div>`;
+  }).join('');
+  box.querySelectorAll('[data-copy-code]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const val = btn.dataset.copyCode;
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(val).then(()=> toast('Kod nusxalandi')).catch(()=> toast('Nusxalab bo‘lmadi', true));
+      } else { toast('Kod: '+val); }
+    });
+  });
+}
+document.getElementById('promoNavBtn').addEventListener('click', ()=> openModal('promoModal'));
+document.getElementById('promoNavBtnMobile').addEventListener('click', ()=>{ closeModal('mobileMenu'); openModal('promoModal'); });
+document.getElementById('promoCodeSubmit').addEventListener('click', ()=>{
+  const u = currentUser();
+  if(!u){ closeModal('promoModal'); openModal('loginModal'); return; }
+  const raw = document.getElementById('promoCodeInput').value.trim().toUpperCase();
+  if(!raw){ toast('Kodni kiriting', true); return; }
+  const s = getStore();
+  const entry = s.caseCodes.find(c=>c.code===raw);
+  if(!entry){ toast('Noto‘g‘ri kod', true); return; }
+  if(entry.status==='redeemed'){ toast('Bu kod eskirdi — birov allaqachon yutgan', true); return; }
+  if(entry.status==='available'){ toast('Bu kod hali hech kimga berilmagan', true); return; }
+  if(entry.status==='won' && entry.wonBy!==u.id){ toast('Bu kod sizga tegishli emas', true); return; }
+  entry.status = 'redeemed';
+  entry.redeemedBy = u.id;
+  entry.redeemedAt = new Date().toISOString();
+  setStore(s);
+  document.getElementById('promoCodeInput').value='';
+  closeModal('promoModal');
+  const item = getCaseItems().find(i=>i.id===entry.itemId);
+  toast(`🎉 Siz yutdingiz! ${item?item.name:''}`);
+  renderAccountCodes();
+});
+
+/* ===================== INIT ===================== */
+applyBranding();
+renderBalance();
+renderShop();
+renderKeysContent();
+initGoogleSignIn();
+window.addEventListener('load', initGoogleSignIn);
+
+// Open the right view based on URL hash on first load (optional deep-link support)
+(function initialRoute(){
+  const h = location.hash.replace('#','');
+  if(h.startsWith('shop')){
+    const anchor = h.includes('-') ? h.split('-')[1] : null;
+    showView('shop', anchor);
+  } else if(h==='case'){
+    showView('case');
+  } else {
+    showView('landing');
+  }
+})();
+</script>
+
+<!-- ============== CASE SCRIPT ============== -->
+<script>
+(function(){
+
+  // ICONS, TIER_LABEL, TYPE_LABEL and the item list itself now live in the main
+  // script (CASE_ICONS / CASE_TIER_LABEL / CASE_TYPE_LABEL / getCaseItems()) so the
+  // admin panel's "Case / Promo" tab can manage the same data this view renders.
+  var TIER_LABEL = CASE_TIER_LABEL;
+  var TYPE_LABEL = CASE_TYPE_LABEL;
+
+  function iconSvg(key, extraAttrs){
+    return caseIconSvg(key, extraAttrs);
+  }
+
+  var contentsGrid = document.getElementById('contentsGrid');
+  function renderContentsGrid(){
+    var items = getCaseItems();
+    contentsGrid.innerHTML = '';
+    items.slice().sort(function(a,b){ return b.chance - a.chance; }).forEach(function(it){
+      var el = document.createElement('div');
+      el.className = 'item-chip tier-'+it.tier;
+      el.innerHTML =
+        '<div class="icon-wrap">'+iconSvg(it.icon)+'</div>'+
+        '<div class="nm">'+it.name+'</div>'+
+        '<div class="chance">'+it.chance+'% ehtimol</div>';
+      contentsGrid.appendChild(el);
+    });
+  }
+  renderContentsGrid();
+  // Let the rest of the app (e.g. the router, after an admin edit) refresh the grid.
+  window.refreshCaseContents = renderContentsGrid;
+
+  function weightedPick(){
+    var items = getCaseItems();
+    var total = items.reduce(function(s,i){ return s+Number(i.chance||0); }, 0);
+    var r = Math.random() * total;
+    var acc = 0;
+    for (var i=0;i<items.length;i++){
+      acc += Number(items[i].chance||0);
+      if (r <= acc) return items[i];
+    }
+    return items[items.length-1];
+  }
+
+  var inventory = [];
+  var invArea = document.getElementById('invArea');
+  var invCount = document.getElementById('invCount');
+  var currentFilter = 'all';
+
+  function fmtDate(d){
+    var months = ['yan','fev','mar','apr','may','iyn','iyl','avg','sen','okt','noy','dek'];
+    return d.getDate()+' '+months[d.getMonth()]+', '+d.getHours().toString().padStart(2,'0')+':'+d.getMinutes().toString().padStart(2,'0');
+  }
+
+  function renderInventory(){
+    invCount.textContent = inventory.length + ' ta buyum';
+    var list = inventory.filter(function(it){ return currentFilter==='all' || it.type===currentFilter; });
+    if (list.length === 0){
+      invArea.innerHTML = '<div class="case-empty-state">Hozircha virtual mukofotlaringiz mavjud emas. Case oching va birinchi bezagingizni qo\'lga kiriting.</div>';
+      return;
+    }
+    var grid = document.createElement('div');
+    grid.className = 'inv-grid';
+    list.slice().reverse().forEach(function(it){
+      var card = document.createElement('div');
+      card.className = 'inv-card tier-'+it.tier;
+      card.innerHTML =
+        '<div class="icon-wrap">'+iconSvg(it.icon)+'</div>'+
+        '<div class="nm">'+it.name+'</div>'+
+        '<div class="tier-lbl" style="color:var(--tier-'+it.tier+')">'+TIER_LABEL[it.tier]+' · '+TYPE_LABEL[it.type]+'</div>'+
+        '<div class="dt">'+fmtDate(it.receivedAt)+'</div>';
+      grid.appendChild(card);
+    });
+    invArea.innerHTML = '';
+    invArea.appendChild(grid);
+  }
+  renderInventory();
+
+  document.getElementById('caseFilters').addEventListener('click', function(e){
+    var btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+    document.querySelectorAll('#caseView .filter-btn').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    currentFilter = btn.getAttribute('data-f');
+    renderInventory();
+  });
+
+  var openBtn = document.getElementById('openBtn');
+  var overlay = document.getElementById('caseOverlay');
+  var stage = document.getElementById('caseStage');
+  var reel = document.getElementById('caseReel');
+  var reveal = document.getElementById('caseReveal');
+  var stageCaption = document.getElementById('caseStageCaption');
+  var caseVisual = document.getElementById('caseVisual');
+  var isOpening = false;
+
+  var CARD_W = 104, GAP = 14, STEP = CARD_W + GAP;
+
+  function buildReel(finalItem){
+    reel.innerHTML = '';
+    var sequence = [];
+    var totalCards = 60;
+    for (var i=0;i<totalCards;i++){
+      sequence.push(i === totalCards - 8 ? finalItem : weightedPick());
+    }
+    sequence.forEach(function(it){
+      var el = document.createElement('div');
+      el.className = 'reel-card tier-'+it.tier;
+      el.innerHTML = '<div class="icon-wrap" style="background:var(--tier-'+it.tier+'-bg); color:var(--tier-'+it.tier+')">'+iconSvg(it.icon)+'</div><div class="rn">'+it.name+'</div>';
+      reel.appendChild(el);
+    });
+    return totalCards - 8;
+  }
+
+  function openCase(){
+    if (isOpening) return;
+
+    var user = (typeof currentUser === 'function') ? currentUser() : null;
+    if (!user) {
+      if (typeof toast === 'function') toast('Avval akkauntga kiring', true);
+      if (typeof openModal === 'function' && document.getElementById('loginModal')) openModal('loginModal');
+      return;
+    }
+
+    // Choose the prize before charging so a CASE can never take 10,000 so'm
+    // when there is no admin-added code for the prize.
+    var won = weightedPick();
+    var store = getStore();
+    var availableCode = (store.caseCodes || []).find(function(c){
+      return c.itemId === won.id && c.status === 'available';
+    });
+
+    if (!availableCode) {
+      if (typeof toast === 'function') toast('Bu yutuq uchun kod tugagan. Boshqa CASE yutug‘i tanlanadi.', true);
+      // Try to find any item which still has a code.
+      var codedItems = getCaseItems().filter(function(it){
+        return (store.caseCodes || []).some(function(c){ return c.itemId===it.id && c.status==='available'; });
+      });
+      if (!codedItems.length) {
+        if (typeof toast === 'function') toast('Hozircha CASE kodlari tugagan. Admin yangi kod qo‘shishi kerak.', true);
+        return;
+      }
+      // Pick among items that have codes, using their configured chance.
+      var total = codedItems.reduce(function(sum,it){ return sum + Number(it.chance||0); }, 0);
+      var r = Math.random()*total, acc=0;
+      for (var ci=0; ci<codedItems.length; ci++) {
+        acc += Number(codedItems[ci].chance||0);
+        if (r <= acc) { won=codedItems[ci]; break; }
+      }
+    }
+
+    // The CASE price is exactly 10,000 so'm.
+    if (typeof payForCaseOpen === 'function' && !payForCaseOpen()) return;
+
+    // Reserve the exact code now. It can no longer be given to another user.
+    store = getStore();
+    availableCode = (store.caseCodes || []).find(function(c){
+      return c.itemId === won.id && c.status === 'available';
+    });
+    if (!availableCode) {
+      // Extremely defensive rollback: if another local action consumed the code,
+      // return the 10,000 so'm before aborting.
+      var rollbackUser = store.users.find(function(x){ return x.id===store.currentUserId; });
+      if (rollbackUser) rollbackUser.balance = Number(rollbackUser.balance||0) + 10000;
+      setStore(store);
+      if (typeof renderBalance === 'function') renderBalance();
+      if (typeof toast === 'function') toast('Kod topilmadi, pul qaytarildi.', true);
+      return;
+    }
+    availableCode.status = 'won';
+    availableCode.wonBy = user.id;
+    availableCode.wonAt = new Date().toISOString();
+    setStore(store);
+
+    isOpening = true;
+    openBtn.disabled = true;
+    caseVisual.classList.add('priming');
+
+    setTimeout(function(){
+      caseVisual.classList.remove('priming');
+      overlay.classList.add('show');
+      reveal.classList.remove('show');
+      stage.style.display = 'block';
+      stageCaption.style.display = 'block';
+      stageCaption.textContent = 'Case ochilmoqda...';
+
+      var winIndex = buildReel(won);
+      var stageWidth = stage.clientWidth;
+      var targetOffset = (winIndex * STEP) + (STEP/2) - (stageWidth/2);
+      var jitter = (Math.random()*40 - 20);
+
+      reel.style.transition = 'none';
+      reel.style.transform = 'translateX(0px)';
+      void reel.offsetWidth;
+
+      reel.style.transition = 'transform 4.6s cubic-bezier(.08,.85,.06,1)';
+      reel.style.transform = 'translateX(-'+(targetOffset + jitter)+'px)';
+
+      setTimeout(function(){
+        stage.style.display = 'none';
+        stageCaption.style.display = 'none';
+        showReveal(won, availableCode.code);
+      }, 4700);
+
+    }, 650);
+  }
+
+  function showReveal(item, wonCode){
+    var wrap = document.getElementById('revealIconWrap');
+    wrap.style.background = 'var(--tier-'+item.tier+'-bg)';
+    wrap.style.color = 'var(--tier-'+item.tier+')';
+    wrap.innerHTML = iconSvg(item.icon);
+    wrap.style.setProperty('--glow', 'var(--tier-'+item.tier+')');
+    wrap.style.boxShadow = '0 0 0 1px var(--tier-'+item.tier+') inset';
+
+    document.getElementById('revealName').textContent = item.name;
+    var tierEl = document.getElementById('revealTier');
+    tierEl.textContent = TIER_LABEL[item.tier] + ' · ' + TYPE_LABEL[item.type];
+    tierEl.style.color = 'var(--tier-'+item.tier+')';
+
+    // Show the one-time code belonging to this exact CASE prize.
+    var codeBox = document.getElementById('revealCodeBox');
+    var codeText = document.getElementById('revealCodeText');
+    if (wonCode && codeBox && codeText) {
+      codeText.textContent = wonCode;
+      codeBox.style.display = 'block';
+      var copyBtn = document.getElementById('revealCodeCopy');
+      if (copyBtn) {
+        copyBtn.onclick = function(){
+          if(navigator.clipboard && navigator.clipboard.writeText){
+            navigator.clipboard.writeText(wonCode).then(function(){
+              if(typeof toast==='function') toast('Kod nusxalandi');
+            }).catch(function(){ if(typeof toast==='function') toast('Kod: '+wonCode); });
+          } else if(typeof toast==='function') {
+            toast('Kod: '+wonCode);
+          }
+        };
+      }
+    } else if (codeBox) {
+      codeBox.style.display = 'none';
+    }
+
+    reveal.classList.add('show');
+
+    // Keep the existing visual inventory and also persist the CASE win on the
+    // logged-in account so the code is still visible after refresh.
+    inventory.push(Object.assign({}, item, { receivedAt: new Date() }));
+    renderInventory();
+
+    var s = getStore();
+    var u = s.users.find(function(x){ return x.id === s.currentUserId; });
+    if (u) {
+      if (!Array.isArray(u.caseWins)) u.caseWins = [];
+      if (wonCode) {
+        u.caseWins.push({
+          itemId: item.id,
+          itemName: item.name,
+          code: wonCode,
+          wonAt: new Date().toISOString()
+        });
+      }
+      setStore(s);
+    }
+    if (typeof renderAccountCodes === 'function') renderAccountCodes();
+  }
+
+  function closeCaseOverlay(){
+    overlay.classList.remove('show');
+    reveal.classList.remove('show');
+    isOpening = false;
+    openBtn.disabled = false;
+  }
+
+  openBtn.addEventListener('click', openCase);
+  document.getElementById('openAgain').addEventListener('click', function(){
+    closeCaseOverlay();
+    setTimeout(openCase, 150);
+  });
+  document.getElementById('gotoInv').addEventListener('click', function(){
+    closeCaseOverlay();
+    document.querySelector('#caseView .section-head').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+})();
+</script>
+
+
+<script id="paid-case-price-config">const PAID_CASE_PRICE = 10000;</script>
+<script id="final-safe-features">
+(function(){
+  const CASE_PRICE = 10000;
+  const PROMO_MAX_USES = 5;
+
+  function store(){
+    const s = (typeof getStore === 'function') ? getStore() : {};
+    if(!Array.isArray(s.promos)) s.promos = [];
+    if(!Array.isArray(s.caseCodes)) s.caseCodes = [];
+    if(!Array.isArray(s.users)) s.users = [];
+    return s;
+  }
+  function save(s){ if(typeof setStore === 'function') setStore(s); }
+  function uidSafe(){
+    return typeof uid === 'function' ? uid() : ('x'+Date.now().toString(36)+Math.random().toString(36).slice(2));
+  }
+  function me(){ return typeof currentUser === 'function' ? currentUser() : null; }
+  function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));}
+  function msg(t,bad){
+    if(typeof toast==='function'){toast(t,!!bad);return;}
+    const el=document.getElementById('finalPromoStatus');
+    if(el){el.className='final-status '+(bad?'err':'ok');el.textContent=t;}
+  }
+
+  // ---- Promo ----
+  function today(){ return new Date().toISOString().slice(0,10); }
+  function usedToday(p,userId){
+    return (p.redemptions||[]).some(r=>r.userId===userId && r.date===today());
+  }
+  function giveReward(s,u,reward){
+    if(!Array.isArray(u.promoRewards)) u.promoRewards=[];
+    if(reward==='uc60'){
+      u.promoRewards.push({id:uidSafe(),type:'uc',amount:60,name:'60 UC',createdAt:new Date().toISOString()});
+      // Also add to a numeric UC balance when such a field exists.
+      if(typeof u.ucBalance==='number') u.ucBalance += 60;
+      else if(typeof u.uc==='number') u.uc += 60;
+    }else{
+      u.promoRewards.push({id:uidSafe(),type:'pm',amount:99,name:'99 lik PM',createdAt:new Date().toISOString()});
+    }
+  }
+
+  function renderPromos(){
+    const body=document.getElementById('finalPromoAdminBody');
+    if(!body)return;
+    const s=store();
+    body.innerHTML=s.promos.length?s.promos.map(p=>{
+      const n=Number(p.used||0);
+      return `<tr><td><b>${esc(p.code)}</b></td><td>${p.reward==='uc60'?'60 UC':'99 lik PM'}</td>
+      <td>${n}/${PROMO_MAX_USES}</td><td>${n>=PROMO_MAX_USES?'Tugagan':'Faol'}</td></tr>`;
+    }).join(''):'<tr><td colspan="4">Promo kodlar yo‘q</td></tr>';
+  }
+
+  // ---- CASE codes in cabinet ----
+  function renderCodes(){
+    const box=document.getElementById('finalMyCaseCodesList');
+    if(!box)return;
+    const u=me(), s=store();
+    if(!u){box.innerHTML='<div class="muted">Kirish kerak.</div>';return;}
+    const rows=s.caseCodes.filter(c=>c.userId===u.id && (c.status==='used'||c.status==='won'));
+    box.innerHTML=rows.length?rows.map(c=>`
+      <div class="final-code-card">
+        <div><small>CASE KODI</small><br><code>${esc(c.code)}</code></div>
+        <button type="button" class="btn btn-sm btn-gold" data-copy-final-code="${esc(c.code)}">NUSXALASH</button>
+      </div>`).join(''):'<div class="muted">Hozircha yutilgan kod yo‘q.</div>';
+    box.querySelectorAll('[data-copy-final-code]').forEach(b=>b.onclick=async()=>{
+      try{await navigator.clipboard.writeText(b.dataset.copyFinalCode);msg('Kod nusxalandi');}
+      catch(e){msg('Kod: '+b.dataset.copyFinalCode);}
+    });
+  }
+
+  // Expose helper so existing CASE award code can reserve a code safely.
+  // It does not overwrite existing CASE logic; it only returns one available code.
+  window.reserveFinalCaseCode=function(itemId,userId){
+    const s=store();
+    const c=s.caseCodes.find(x=>x.itemId===itemId && x.status==='available' && !x.userId);
+    if(!c)return null;
+    c.status='used'; c.userId=userId; c.awardedAt=new Date().toISOString();
+    save(s);
+    return c;
+  };
+
+  document.addEventListener('DOMContentLoaded',function(){
+    // Cabinet button: use existing account modal if present.
+    document.getElementById('cornerCabinetBtn')?.addEventListener('click',function(){
+      const u=me();
+      if(!u){ if(typeof openModal==='function' && document.getElementById('loginModal')) openModal('loginModal'); else msg('Avval kiring',true); return; }
+      if(typeof openModal==='function' && document.getElementById('accountModal')) openModal('accountModal');
+      renderCodes();
+    });
+
+    document.getElementById('finalPromoUse')?.addEventListener('click',function(){
+      const u=me();
+      const status=document.getElementById('finalPromoStatus');
+      if(!u){status.className='final-status err';status.textContent='Avval akkauntga kiring.';return;}
+      const inp=document.getElementById('finalPromoInput');
+      const code=(inp?.value||'').trim();
+      if(!code){status.className='final-status err';status.textContent='Promo kodni kiriting.';return;}
+      const s=store();
+      const p=s.promos.find(x=>String(x.code).toLowerCase()===code.toLowerCase());
+      if(!p){status.className='final-status err';status.textContent='Promo kod topilmadi.';return;}
+      if(!p.active || Number(p.used||0)>=PROMO_MAX_USES){status.className='final-status err';status.textContent='Bu promo kodi tugagan.';return;}
+      if(usedToday(p,u.id)){status.className='final-status err';status.textContent='Siz bu promo kodni bugun ishlatgansiz.';return;}
+      p.redemptions=p.redemptions||[];
+      p.redemptions.push({userId:u.id,date:today(),at:new Date().toISOString()});
+      p.used=Number(p.used||0)+1;
+      if(p.used>=PROMO_MAX_USES)p.active=false;
+      giveReward(s,u,p.reward);
+      save(s);
+      status.className='final-status ok';
+      status.textContent=p.reward==='uc60'?'Tabriklaymiz! 60 UC berildi.':'Tabriklaymiz! 99 lik PM berildi.';
+      inp.value='';
+      renderPromos();
+    });
+
+    document.getElementById('finalPromoAdminAdd')?.addEventListener('click',function(){
+      const input=document.getElementById('finalPromoAdminCode');
+      const code=(input?.value||'').trim();
+      const reward=document.getElementById('finalPromoAdminReward')?.value||'uc60';
+      if(!code){msg('Promo kodni kiriting',true);return;}
+      const s=store();
+      if(s.promos.some(p=>String(p.code).toLowerCase()===code.toLowerCase())){
+        msg('Bu promo kod allaqachon mavjud',true);return;
+      }
+      s.promos.push({id:uidSafe(),code,reward,maxUses:5,used:0,active:true,redemptions:[],createdAt:new Date().toISOString()});
+      save(s);
+      input.value='';
+      renderPromos();
+      msg('Promo kod qo‘shildi');
+    });
+
+    renderPromos();
+    renderCodes();
+  });
+
+  // Keep cabinet codes updated after existing app rerenders.
+  window.addEventListener('storage',renderCodes);
+})();
+</script>
+
+
+
+
+
+<script id="paid-case-open-guard">
+(function(){
+  const PRICE = 10000;
+  window.payForCaseOpen = function(){
+    const u = (typeof currentUser === 'function') ? currentUser() : null;
+    if(!u){
+      if(typeof toast==='function') toast('Avval akkauntga kiring', true);
+      if(typeof openModal==='function' && document.getElementById('loginModal')) openModal('loginModal');
+      return false;
+    }
+    const s = (typeof getStore==='function') ? getStore() : null;
+    if(!s) return false;
+    const storedUser = (s.users || []).find(x => x.id === u.id);
+    if(!storedUser || Number(storedUser.balance || 0) < PRICE){
+      if(typeof toast==='function') toast('CASE ochish uchun 10 000 so‘m kerak', true);
+      return false;
+    }
+    storedUser.balance = Number(storedUser.balance) - PRICE;
+    s.currentUserId = storedUser.id;
+    if(typeof setStore==='function') setStore(s);
+    u.balance = storedUser.balance;
+    if(typeof renderBalance==='function') renderBalance();
+    return true;
+  };
+})();
+</script>
+
+</body>
+</html>
